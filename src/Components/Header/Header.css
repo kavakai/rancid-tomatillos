@@ -1,0 +1,21 @@
+.header {
+  background-color:  #1a1a1a;
+  height:4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #ffff;
+  /* font-family: 'Roboto Mono', monospace;
+  font-weight: 300; */
+font-family: Roboto Mono;
+font-style: normal;
+font-weight: normal;
+font-size: 32px;
+line-height: 42px;
+text-align: center;
+letter-spacing: 0.07em;
+
+}
