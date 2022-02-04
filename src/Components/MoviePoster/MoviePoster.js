@@ -1,14 +1,15 @@
 import React from 'react';
 import './MoviePoster.css';
 
-const MoviePoster = ({title, releaseDate, id, averageRating}) => {
+const MoviePoster = ({title, releaseDate, id, averageRating, poster}) => {
   return (
-    <article>
-      <h3>{title}</h3>
+    <>
+      <img src={poster} />
+      {/* <h3>{title}</h3>
       <p>{releaseDate}</p>
       <p>{id}</p>
-      <p>{averageRating}</p>
-    </article>
+      <p>{averageRating}</p> */}
+    </>
   )
 };
 
