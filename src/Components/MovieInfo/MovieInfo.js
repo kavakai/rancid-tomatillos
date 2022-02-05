@@ -7,7 +7,7 @@ const MovieInfo = ({ movie, navigateHome }) => {
   return (
     <section className='movie-info'>
       <img src={movie.backdrop_path} alt={movie.title} className='backdrop'/>
-      <img src={movie.poster_path} alt={movie.title} className='cover'/>
+      <img src={movie.poster_path} alt={'movie.title'} className='cover'/>
       <article className='descriptors'>
         <h1>{movie.title}</h1>
         <p>{movie.average_rating.toFixed(1)}  ⭐️</p>
