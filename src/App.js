@@ -1,6 +1,6 @@
 import React, { Component } from 'react' 
 import './App.css';
-import movieData from './MovieData';
+// import movieData from './MovieData';
 import MovieContainer from './Components/MovieContainer/MovieContainer';
 import Header from './Components/Header/Header';
 import MovieInfo from './Components/MovieInfo/MovieInfo';
@@ -17,14 +17,14 @@ class App extends Component{
   }
 
   componentDidMount = () => {
-    this.setState({ movies: movieData.movies});
+    fetchApi('movies')
+      .then((data) => this.setState({ movies: data.movies }))
   }
 
   selectMovie = (id) => {
-    console.log(id, 'id')
-    const movie = this.state.movies.find(film => film.id === id)
-    console.log(movie, 'movie')
-    this.setState({ isSelected: true, singleMovie: movie })
+    fetchApi("movies", parseInt(id)).then((data) =>
+      this.setState({ isSelected: true, singleMovie: data.movie })
+    );
   }
   navigateHome = () => {
      this.setState({isSelected: false, singleMovie: {}})
