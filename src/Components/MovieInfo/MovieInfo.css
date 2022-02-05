@@ -17,7 +17,8 @@
 .backdrop {
   width: inherit;
   height: 60vh;
-  filter: opacity(.6);
+  /* filter: hue-rotate(197deg) invert(29%) saturate(85%) contrast(70%); */
+  filter: hue-rotate(21deg) invert(15%) saturate(200%) contrast(60%);
 }
 
 .descriptors {
