@@ -1,18 +1,14 @@
 .header {
   background-color:  #1a1a1a;
-  height:4rem;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-h1 {
+.header > h1 {
   color: #ffff;
-  font-style: normal;
   font-weight: normal;
-  font-size: 32px;
-  line-height: 42px;
-  text-align: center;
   letter-spacing: 0.07em;
 }
 

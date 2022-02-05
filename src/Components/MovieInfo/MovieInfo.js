@@ -9,9 +9,9 @@ const MovieInfo = ({ movie, navigateHome }) => {
       <img src={movie.backdrop_path} alt={movie.title} className='backdrop'/>
       <img src={movie.poster_path} alt={movie.title} className='cover'/>
       <article className='descriptors'>
-        <div>
-          {movie.title && <h1>{movie.title}</h1>}
-          {movie.tagline && <h2>"{movie.tagline}"</h2>}
+        <div className='title-tag'>
+          {movie.title && <h2>{movie.title}</h2>}
+          {movie.tagline && <h3>"{movie.tagline}"</h3>}
         </div>  
         <p>{movie.average_rating.toFixed(1)}  ⭐️</p>
         <ul className='genres'>
