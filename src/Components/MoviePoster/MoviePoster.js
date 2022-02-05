@@ -4,7 +4,7 @@ import './MoviePoster.css';
 const MoviePoster = ({id, poster, selectMovie}) => {
   return (
     <>
-      <img key={id} id={id} src={poster} onClick={() => selectMovie(id)} />
+      <img className='poster' key={id} id={id} src={poster} onClick={() => selectMovie(id)} />
     </>
   )
 };

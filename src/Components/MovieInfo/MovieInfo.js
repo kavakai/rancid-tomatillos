@@ -1,17 +1,16 @@
 import React from 'react';
 import './MovieInfo.css';
-import MoviePoster from '../MoviePoster/MoviePoster'
 
 const MovieInfo = ({ movie, navigateHome }) => {
-  console.log(movie)
+  console.log(movie.release_date.split('-'))
   return (
-    <section>
-      <img src={movie.poster_path}/>
-      <img src={movie.backdrop_path}/>
-      <article>
-        <p>{movie.title}</p>
-        <p>{movie.average_rating}</p>
-        <p>{movie.release_date}</p>
+    <section className='movie-info'>
+      <img src={movie.backdrop_path} className='backdrop'/>
+      <img src={movie.poster_path} className='cover'/>
+      <article className='descriptors'>
+        <h1>{movie.title}</h1>
+        <p>{Math.round(movie.average_rating)}  ⭐️</p>
+        <p>Release Date: {movie.release_date}</p>
         <button onClick={navigateHome}>Home</button>
       </article>
     </section>
