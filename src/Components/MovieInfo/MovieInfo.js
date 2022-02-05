@@ -11,7 +11,7 @@ const MovieInfo = ({ movie, navigateHome }) => {
       <article className='descriptors'>
         <div className='title-tag'>
           {movie.title && <h2>{movie.title}</h2>}
-          {movie.tagline && <h3>"{movie.tagline}"</h3>}
+          {movie.tagline && <h4>"{movie.tagline}"</h4>}
         </div>  
         <p>{movie.average_rating.toFixed(1)}  ⭐️</p>
         <ul className='genres'>
