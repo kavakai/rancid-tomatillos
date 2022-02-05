@@ -12,17 +12,19 @@ class App extends Component{
     this.state = {
       movies: [],
       isSelected: false,
-      singleMovie: {}
+      singleMovie: {},
+      error: '',
     }
   }
 
   componentDidMount = () => {
-    fetchApi('movies')
+    fetchApi("movies")
       .then((data) => this.setState({ movies: data.movies }))
+      .catch((error) => this.setState({error: error.message}));
   }
 
   selectMovie = (id) => {
-    fetchApi("movies", parseInt(id)).then((data) =>
+    fetchApi("movies", parseInt(id)).then((data) => 
       this.setState({ isSelected: true, singleMovie: data.movie })
     );
   }
@@ -33,11 +35,24 @@ class App extends Component{
   render() {
     return (
       <main>
-        {this.state.isSelected && <MovieInfo movie={this.state.singleMovie} navigateHome={this.navigateHome}/>}
-        {!this.state.isSelected && <><Header />
-        <MovieContainer movies={this.state.movies} selectMovie={this.selectMovie} /></>}
+        {this.state.isSelected && (
+          <MovieInfo
+            movie={this.state.singleMovie}
+            navigateHome={this.navigateHome}
+          />
+        )}
+        {!this.state.isSelected && (
+          <>
+            <Header />
+            <MovieContainer
+              movies={this.state.movies}
+              selectMovie={this.selectMovie}
+            />
+          </>
+        )}
+        {this.state.error && <h2 className='error'>{this.state.error}</h2>}
       </main>
-    )
+    );
   }
 
 }
