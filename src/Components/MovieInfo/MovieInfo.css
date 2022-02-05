@@ -17,7 +17,6 @@
 .backdrop {
   width: inherit;
   height: 60vh;
-  /* filter: hue-rotate(197deg) invert(29%) saturate(85%) contrast(70%); */
   filter: hue-rotate(21deg) invert(15%) saturate(200%) contrast(60%);
 }
 
@@ -29,7 +28,8 @@
   align-items: center;
 }
 
-.descriptors > h1 {
+.descriptors > div {
+  font-size: 2rem;
   position: absolute;
   top: 21vh;
   -webkit-text-stroke: .5px black;
