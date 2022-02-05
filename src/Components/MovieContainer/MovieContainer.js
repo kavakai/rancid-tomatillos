@@ -9,6 +9,7 @@ const MovieContainer = ({ movies, selectMovie }) => {
       <MoviePoster
         poster={movie.poster_path}
         selectMovie={selectMovie} 
+        id={movie.id}
       	key={movie.id} />)
     })
   return(

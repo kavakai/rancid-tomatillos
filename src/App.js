@@ -11,6 +11,7 @@ class App extends Component{
     this.state = {
       movies: [],
       isSelected: false,
+      singleMovie: {}
     }
   }
 
@@ -19,9 +20,10 @@ class App extends Component{
   }
 
   selectMovie = (id) => {
-    this.setState({ isSelected: true })
-    const movie = this.state.find(film => film.id === id)
-    return movie
+    console.log(id, 'id')
+    const movie = this.state.movies.find(film => film.id === id)
+    console.log(movie, 'movie')
+    this.setState({ isSelected: true, singleMovie: movie })
   }
   // navigateHome = () => {
   //     return (
@@ -35,9 +37,9 @@ class App extends Component{
   render() {
     return (
       <main>
-        {this.state.isSelected && <MovieInfo movie={movie}/>}
-        <Header />
-        <MovieContainer movies={this.state.movies} selectMovie={this.selectMovie} />
+        {this.state.isSelected && <MovieInfo movie={this.state.singleMovie} />}
+        {!this.state.isSelected && <><Header />
+        <MovieContainer movies={this.state.movies} selectMovie={this.selectMovie} /></>}
       </main>
     )
   }
