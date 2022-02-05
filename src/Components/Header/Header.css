@@ -17,6 +17,7 @@ h1 {
 }
 
 .tomatillo {
-  width: 2vw;
+  width: 2.5vw;
   margin: 1rem;
+  transform: rotate(25deg);
 }
