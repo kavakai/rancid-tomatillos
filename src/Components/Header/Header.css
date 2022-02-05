@@ -8,14 +8,16 @@
 
 h1 {
   color: #ffff;
-  /* font-family: 'Roboto Mono', monospace;
-  font-weight: 300; */
-font-family: Roboto Mono;
-font-style: normal;
-font-weight: normal;
-font-size: 32px;
-line-height: 42px;
-text-align: center;
-letter-spacing: 0.07em;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 42px;
+  text-align: center;
+  letter-spacing: 0.07em;
+}
 
+.tomatillo {
+  width: 2.5vw;
+  margin: 1rem;
+  transform: rotate(25deg);
 }

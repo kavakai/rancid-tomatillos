@@ -1,14 +1,10 @@
 import React from 'react';
 import './MoviePoster.css';
 
-const MoviePoster = ({title, releaseDate, id, averageRating, poster}) => {
+const MoviePoster = ({id, poster, title, selectMovie}) => {
   return (
     <>
-      <img src={poster} />
-      {/* <h3>{title}</h3>
-      <p>{releaseDate}</p>
-      <p>{id}</p>
-      <p>{averageRating}</p> */}
+      <img className='poster' key={id} id={id} src={poster} alt={title} onClick={() => selectMovie(id)} />
     </>
   )
 };
