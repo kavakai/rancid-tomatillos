@@ -2,16 +2,13 @@ import React from 'react';
 import './MovieContainer.css';
 import MoviePoster from '../MoviePoster/MoviePoster';
 
-const MovieContainer = ({ movies }) => {
+const MovieContainer = ({ movies, selectMovie }) => {
   console.log(movies)
   const posters = movies.flat(1).map(movie => {
     return (
       <MoviePoster
         poster={movie.poster_path}
-        title={movie.title}
-        releaseDate={movie.releaseDate}
-        id={movie.id}
-        averageRating={movie.averageRating}
+        selectMovie={selectMovie} 
       	key={movie.id} />)
     })
   return(

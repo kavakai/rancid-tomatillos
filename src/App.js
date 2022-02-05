@@ -8,19 +8,33 @@ class App extends Component{
   constructor() {
     super()
     this.state = {
-      movies: [movieData.movies],
+      movies: [],
     }
   }
 
-  // componentDidMount = () => {
-  //   this.setState({ movies: movieData});
+  componentDidMount = () => {
+    this.setState({ movies: movieData.movies});
+  }
+
+  selectMovie = () => {
+    return (
+      <MovieInfo />
+    )
+  }
+  // navigateHome = () => {
+  //     return (
+  //       <main>
+  //         <Header />
+  //         <MovieContainer movies={this.state.movies}/>
+  //       </main>
+  //     )
   // }
 
   render() {
     return (
       <main>
         <Header />
-        <MovieContainer movies={this.state.movies}/>
+        <MovieContainer movies={this.state.movies} selectMovie={this.selectMovie} />
       </main>
     )
   }
