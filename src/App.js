@@ -4,6 +4,7 @@ import movieData from './MovieData';
 import MovieContainer from './Components/MovieContainer/MovieContainer';
 import Header from './Components/Header/Header';
 import MovieInfo from './Components/MovieInfo/MovieInfo';
+import { fetchApi } from './apiCalls';
 
 class App extends Component{
   constructor() {
