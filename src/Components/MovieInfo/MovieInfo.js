@@ -12,22 +12,27 @@ const MovieInfo = ({ movie, navigateHome }) => {
         <div className='title-tag'>
           {movie.title && <h2>{movie.title}</h2>}
           {movie.tagline && <h4>"{movie.tagline}"</h4>}
-        </div>  
+        </div>
+        <div className='place-container'>
         <p>{movie.average_rating.toFixed(1)}  ⭐️</p>
-        <ul className='genres'>
-        {movie.genres.length && movie.genres.map((genre, i) => {
+        <button onClick={navigateHome}>Home</button>
+        </div>
+        <div className='text-section'> 
+          <ul className='genres'>
+          {movie.genres.length && movie.genres.map((genre, i) => {
           return (
             <li key={i}>{genre}</li>
-          )
-        })}
-        </ul>
-        {movieDate && <p>Release Date: {movieDate}</p>}
-        <div>
-          {movie.runtime && <p>Runtime: {movie.runtime} mins</p>}
-          {movie.budget > 0 && <p>Budget: ${Intl.NumberFormat('en-US').format(movie.budget)}</p>}
-          {movie.revenue > 0 && <p>Revenue: ${Intl.NumberFormat('en-US').format(movie.revenue)}</p>}
-        </div>
-        <button onClick={navigateHome}>Home</button>
+            )
+          })}
+          </ul>
+          <p className='overview'>{movie.overview}</p>
+          <div className='production-info'>
+            {movieDate && <p>Release Date: {movieDate}</p>}
+            {movie.runtime && <p>Runtime: {movie.runtime} mins</p>}
+            {movie.budget > 0 && <p>Budget: ${Intl.NumberFormat('en-US').format(movie.budget)}</p>}
+            {movie.revenue > 0 && <p>Revenue: ${Intl.NumberFormat('en-US').format(movie.revenue)}</p>}
+          </div>
+          </div>
       </article>
     </section>
   )
