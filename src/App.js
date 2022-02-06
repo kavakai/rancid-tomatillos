@@ -30,7 +30,6 @@ class App extends Component{
         this.setState({ isSelected: true, singleMovie: data.movie })
       )
       .catch((error) => {
-        console.log(error)
         this.setState({ error: error });
       });
   }
@@ -60,7 +59,7 @@ class App extends Component{
             />
           </>
         ) : (
-          <Error error={this.state.error} navigateHome={this.navigateHome} />
+            this.state.error && <Error error={this.state.error} navigateHome={this.navigateHome} /> 
         )}
       </main>
     );
