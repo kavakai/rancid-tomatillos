@@ -5,6 +5,7 @@ import MovieContainer from './Components/MovieContainer/MovieContainer';
 import Header from './Components/Header/Header';
 import MovieInfo from './Components/MovieInfo/MovieInfo';
 import { fetchApi } from './apiCalls';
+import Error from './Components/Error/Error';
 
 class App extends Component{
   constructor() {
@@ -20,28 +21,37 @@ class App extends Component{
   componentDidMount = () => {
     fetchApi("movies")
       .then((data) => this.setState({ movies: data.movies }))
-      .catch((error) => this.setState({error: error.message}));
+      .catch((error) => this.setState({ error: error }));
   }
 
   selectMovie = (id) => {
-    fetchApi("movies", parseInt(id)).then((data) => 
-      this.setState({ isSelected: true, singleMovie: data.movie })
-    );
+    fetchApi("movies", 2322211)
+      .then((data) =>
+        this.setState({ isSelected: true, singleMovie: data.movie })
+      )
+      .catch((error) => {
+        console.log(error)
+        this.setState({ error: error });
+      });
   }
+
   navigateHome = () => {
-     this.setState({isSelected: false, singleMovie: {}})
+    this.setState({isSelected: false, singleMovie: {}, error: ''})
   }
 
   render() {
     return (
       <main>
-        {this.state.isSelected && (
-          <MovieInfo
-            movie={this.state.singleMovie}
-            navigateHome={this.navigateHome}
-          />
+        {this.state.isSelected && !this.state.error && (
+          <>
+            <MovieInfo
+              movie={this.state.singleMovie}
+              navigateHome={this.navigateHome}
+            />
+          </>
         )}
-        {!this.state.isSelected && (
+
+        {!this.state.isSelected && !this.state.error ? (
           <>
             <Header />
             <MovieContainer
@@ -49,8 +59,9 @@ class App extends Component{
               selectMovie={this.selectMovie}
             />
           </>
+        ) : (
+          <Error error={this.state.error} navigateHome={this.navigateHome} />
         )}
-        {this.state.error && <h2 className='error'>{this.state.error}</h2>}
       </main>
     );
   }

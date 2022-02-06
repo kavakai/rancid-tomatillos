@@ -1,0 +1,21 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 12rem;
+}
+.error {
+  text-align: center;
+  color: #ffff;
+}
+
+.errorHome {
+  align-self: center;
+  margin: 2rem 6rem 0 0;
+  font-size: 1.5rem;
+  font-family: inherit;
+  background: #639FC0;
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+}
