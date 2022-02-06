@@ -25,7 +25,7 @@ class App extends Component{
   }
 
   selectMovie = (id) => {
-    fetchApi("movies", 333333)
+    fetchApi("movies", id)
       .then((data) =>
         this.setState({ isSelected: true, singleMovie: data.movie })
       )
