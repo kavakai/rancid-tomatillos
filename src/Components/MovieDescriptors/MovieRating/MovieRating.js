@@ -1,4 +1,5 @@
 import React from "react";
+import './MovieRating.css';
 
 const MovieRating = ({ movie, navigateHome }) => {
   return (

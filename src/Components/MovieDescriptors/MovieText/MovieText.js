@@ -1,4 +1,5 @@
 import React from "react";
+import './MovieText.css';
 
 const MovieText = ({ movie }) => {
   let movieDate = movie.release_date.split("-");
