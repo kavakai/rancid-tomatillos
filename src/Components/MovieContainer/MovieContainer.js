@@ -3,7 +3,6 @@ import './MovieContainer.css';
 import MoviePoster from '../MoviePoster/MoviePoster';
 
 const MovieContainer = ({ movies, selectMovie }) => {
-  console.log(movies)
   const posters = movies.flat(1).map(movie => {
     return (
       <MoviePoster
