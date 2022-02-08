@@ -6,6 +6,7 @@ import Header from './Components/Header/Header';
 import MovieInfo from './Components/MovieInfo/MovieInfo';
 import { fetchApi } from './apiCalls';
 import Error from './Components/Error/Error';
+import { Route } from 'react-router-dom';
 
 class App extends Component{
   constructor() {
@@ -34,14 +35,15 @@ class App extends Component{
   }
 
   selectMovie = (id) => {
+    console.log(id)
     fetchApi("movies", id)
       .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        this.setState({ error: response.status })
-      }
-    })
+        if (response.ok) {
+          return response.json();
+        } else {
+          this.setState({ error: response.status })
+        }
+      })
       .then((data) =>
         this.setState({ isSelected: true, singleMovie: data.movie })
       )
@@ -56,26 +58,32 @@ class App extends Component{
   render() {
     return (
       <main>
-        {this.state.isSelected && !this.state.error && (
           <>
-            <MovieInfo
-              movie={this.state.singleMovie}
-              navigateHome={this.navigateHome}
+            <Route exact path='/movies/:id'
+            render={({ match }) => {
+              console.log(this.state.singleMovie, 'movie')
+                return <MovieInfo
+                  movie={this.state.singleMovie}
+                  navigateHome={this.navigateHome}
+                />;
+              }}
             />
           </>
-        )}
-
-        {!this.state.isSelected && !this.state.error ? (
           <>
             <Header />
-            <MovieContainer
+            <Route exact path="/" render={() => <MovieContainer
               movies={this.state.movies}
               selectMovie={this.selectMovie}
-            />
+            />} />
+
+            {/* <MovieContainer
+              movies={this.state.movies}
+              selectMovie={this.selectMovie}
+            /> */}
           </>
-        ) : (
-            this.state.error && <Error error={this.state.error} navigateHome={this.navigateHome} /> 
-        )}
+        <Route>
+          <Error error={this.state.error} navigateHome={this.navigateHome} /> 
+        </Route>
       </main>
     );
   }
