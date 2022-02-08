@@ -7,12 +7,17 @@ import movieData from '../../src/MovieData';
 
 describe('Home page', () => {
   beforeEach(() => {
+    let fakeApi = 'https://rancid-tomatillos.herokuapp.com/api/v2/movies'
     cy.visit('http://localhost:3000')
-    .intercept('https://rancid-tomatillos.herokuapp.com/api/v2/movies', movieData)
+    .intercept(fakeApi, movieData)
   });
 
   it('Should display a heading and all movie covers', () => {
     cy.contains('h1', 'Rancid Tomatillos')
+    .get('.poster').should('be.visible')
   });
+
+  it('Should display an error when ')
+
 
 });
