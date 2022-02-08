@@ -15,23 +15,38 @@ class App extends Component{
       isSelected: false,
       singleMovie: {},
       error: '',
+      isError: false
     }
   }
 
   componentDidMount = () => {
     fetchApi("movies")
+      .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else { 
+        this.setState({ error: response.status })
+      } 
+      })
       .then((data) => this.setState({ movies: data.movies }))
-      .catch((error) => this.setState({ error: error }));
+      .catch(() => this.setState({ isError: true })
+    );
   }
 
   selectMovie = (id) => {
     fetchApi("movies", id)
+      .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        this.setState({ error: response.status })
+      }
+    })
       .then((data) =>
         this.setState({ isSelected: true, singleMovie: data.movie })
       )
-      .catch((error) => {
-        this.setState({ error: error });
-      });
+      .catch(() => {this.setState({ isError: true });
+    });
   }
 
   navigateHome = () => {
