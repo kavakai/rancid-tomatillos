@@ -62,7 +62,7 @@ class App extends Component{
     // }
     return (
       <main>   
-        <Route path="/" render={() =>
+        <Route exact path="/" render={() =>
           <>
           <Header />
           <MovieContainer
@@ -75,10 +75,11 @@ class App extends Component{
 
         <Route path='/:id'
           render={({ match }) => {  
+            console.log(match)
             const movieToRender = this.state.movies.find(movie => movie.id === parseInt(match.params.id))
             console.log('SHOW ME', movieToRender)
-            return 
-            <MovieInfo {...movieToRender}/>
+            return <MovieInfo movie={movieToRender} />
+            // return <MovieInfo movie={match} />
           }
           }/>   
         <Route>
