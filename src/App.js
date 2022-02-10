@@ -6,7 +6,7 @@ import Header from './Components/Header/Header';
 import MovieInfo from './Components/MovieInfo/MovieInfo';
 import { fetchApi } from './apiCalls';
 import Error from './Components/Error/Error';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component{
   constructor() {
@@ -34,23 +34,6 @@ class App extends Component{
     );
   }
 
-  selectMovie = (id) => {
-    console.log(id)
-    fetchApi("movies", id)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          this.setState({ error: response.status })
-        }
-      })
-      .then((data) =>
-        this.setState({ isSelected: true, singleMovie: data.movie })
-      )
-      .catch(() => {this.setState({ isError: true });
-    });
-  }
-
   navigateHome = () => {
     this.setState({isSelected: false, singleMovie: {}, error: ''})
   }
@@ -58,32 +41,31 @@ class App extends Component{
   render() {
     return (
       <main>
-          <>
-            <Route exact path='/movies/:id'
-            render={({ match }) => {
-              console.log(this.state.singleMovie, 'movie')
-                return <MovieInfo
-                  movie={this.state.singleMovie}
-                  navigateHome={this.navigateHome}
-                />;
-              }}
-            />
-          </>
-          <>
-            <Header />
-            <Route exact path="/" render={() => <MovieContainer
-              movies={this.state.movies}
-              selectMovie={this.selectMovie}
-            />} />
-
-            {/* <MovieContainer
-              movies={this.state.movies}
-              selectMovie={this.selectMovie}
-            /> */}
-          </>
+        <Switch>
+        <>
+          <Route exact path="/" render={() => (
+              <>
+                <Header />
+                <MovieContainer
+                  movies={this.state.movies}
+                  selectMovie={this.selectMovie}
+                />
+              </>
+            )}
+          />
+          <Route path="/:id" render={({ match }) => {
+            const movieId = parseInt(match.params.id)
+              return <MovieInfo
+                      id={movieId}
+                      navigateHome={this.navigateHome}
+                    />;
+            }}
+          />
+        </>
         <Route>
-          <Error error={this.state.error} navigateHome={this.navigateHome} /> 
+          <Error error={this.state.error} navigateHome={this.navigateHome} />
         </Route>
+        </Switch>
       </main>
     );
   }
