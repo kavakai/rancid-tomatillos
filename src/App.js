@@ -16,7 +16,8 @@ class App extends Component{
       isSelected: false,
       singleMovie: {},
       error: '',
-      isError: false
+      isError: false,
+      loading: true,
     }
   }
 
@@ -29,7 +30,7 @@ class App extends Component{
         this.setState({ error: response.status })
       } 
       })
-      .then((data) => this.setState({ movies: data.movies }))
+      .then((data) => this.setState({ movies: data.movies, loading: false }))
       .catch(() => this.setState({ isError: true })
     );
   }
@@ -39,35 +40,39 @@ class App extends Component{
   }
 
   render() {
-    return (
-      <main>
-        <Switch>
-        <>
-          <Route exact path="/" render={() => (
-              <>
-                <Header />
-                <MovieContainer
-                  movies={this.state.movies}
-                  selectMovie={this.selectMovie}
-                />
-              </>
-            )}
-          />
-          <Route path="/:id" render={({ match }) => {
-            const movieId = parseInt(match.params.id)
-              return <MovieInfo
-                      id={movieId}
-                      navigateHome={this.navigateHome}
-                    />;
-            }}
-          />
-        </>
-        <Route>
-          <Error error={this.state.error} navigateHome={this.navigateHome} />
-        </Route>
-        </Switch>
-      </main>
-    );
+    if (this.state.loading) {
+      return <div className="loader"></div>
+    } else {
+      return (
+        <main>
+          <Switch>
+            <>
+              <Route exact path="/" render={() => (
+                <>
+                  <Header />
+                  <MovieContainer
+                    movies={this.state.movies}
+                    selectMovie={this.selectMovie}
+                  />
+                </>
+              )}
+              />
+              <Route path="/:id" render={({ match }) => {
+                const movieId = parseInt(match.params.id)
+                return <MovieInfo
+                  id={movieId}
+                  navigateHome={this.navigateHome}
+                />;
+              }}
+              />
+            </>
+            <Route>
+              <Error error={this.state.error} navigateHome={this.navigateHome} />
+            </Route>
+          </Switch>
+        </main>
+      );
+    }
   }
 
 }
