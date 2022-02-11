@@ -1,7 +1,7 @@
 import React from 'react'
 import './Error.css'
 
-const Error = ({ error, navigateHome }) => {
+const Error = ({ error }) => {
   let message = ''
   if (error < 500) {
     message = "Where is that file?... Sorry. Refresh page and try again"
@@ -10,10 +10,7 @@ const Error = ({ error, navigateHome }) => {
   }
   return (
     <div className="error-container">
-      <h2 className="error">{message}</h2>
-      <br />
-      <details className="error">Status {error}</details>
-      <button className="errorHome" onClick={navigateHome}>Home</button>
+      <h2 className="error">{error} Error, {message}</h2>
     </div>
   )
 }
