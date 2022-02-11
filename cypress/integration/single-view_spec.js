@@ -32,9 +32,28 @@ describe('MovieInfo view', () => {
     }
 
     it('should display a single movie when a user clicks on a movie poster', () => {
-      cy.intercept("https://rancid-tomatillos.herokuapp.com/api/v2/movies/340102", { body: {movie} })
+      cy.intercept(
+        "https://rancid-tomatillos.herokuapp.com/api/v2/movies/340102",
+        { body: { movie } }
+      )
         .visit("http://localhost:3000/340102")
-        .contains("h2", movie.title);
+        .contains("h2", movie.title)
+        .get("button")
+        .should("be.visible")
+        .get(".backdrop")
+        .should(
+          "have.attr",
+          "alt",
+          movie.title
+        );
     })
-    
+  
+  it('should not display info if it doesn\'t exist', () => {
+      cy.intercept(
+        "https://rancid-tomatillos.herokuapp.com/api/v2/movies/737173",
+        { body: { sadMovie } }
+      ).visit("http://localhost:3000/737173")
+        .get('.genres')
+        .should('not.exist')
+    })
 });
