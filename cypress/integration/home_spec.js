@@ -6,18 +6,38 @@
 import movieData from '../../src/MovieData';
 
 describe('Home page', () => {
-  beforeEach(() => {
-    let fakeApi = 'https://rancid-tomatillos.herokuapp.com/api/v2/movies'
-    cy.visit('http://localhost:3000')
-    .intercept(fakeApi, movieData)
-  });
 
   it('Should display a heading and all movie covers', () => {
-    cy.contains('h1', 'Rancid Tomatillos')
-    .get('.poster').should('be.visible')
+    let fakeApi = "https://rancid-tomatillos.herokuapp.com/api/v2/movies";
+    cy.intercept(fakeApi, movieData)
+    .visit("http://localhost:3000")
+      .contains("h1", "Rancid Tomatillos")
+      .get(".poster")
+      .should("be.visible");
   });
 
-  it('Should display an error when ')
+  it('Should display an error message if the url can\'t be reached', () => {
+    let fakeApi2 = "https://rancid-tomatillos.herokuapp.com/api/v2/movies";
+    cy.intercept(fakeApi2, {
+          statusCode: 500,
+          response: {
+              "error": "error message"
+          }
+        })
+      .visit("http://localhost:3000")
+      .contains(
+      "h2",
+      "Oops, our server is napping... Refresh page and try again"
+    );
+  })
 
-
+  it('A user should be able to refresh page and still see all movie covers', () => {
+    let fakeApi = "https://rancid-tomatillos.herokuapp.com/api/v2/movies";
+    cy.intercept(fakeApi, movieData)
+      .visit("http://localhost:3000")
+      .reload()
+      .contains("h1", "Rancid Tomatillos")
+      .get(".poster")
+      .should("be.visible");
+  });
 });

@@ -40,14 +40,19 @@ class App extends Component{
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.state.loading && !this.state.error) {
       return <div className="loader"></div>
     } else {
       return (
         <main>
           <Switch>
-            <>
-              <Route exact path="/" render={() => (
+            <Route exact path="/"
+              render={() => (
+                this.state.error
+                  ? <Error
+                  error={this.state.error}
+                  />
+                  :
                 <>
                   <Header />
                   <MovieContainer
@@ -56,19 +61,25 @@ class App extends Component{
                   />
                 </>
               )}
-              />
-              <Route path="/:id" render={({ match }) => {
-                const movieId = parseInt(match.params.id)
-                return <MovieInfo
-                  id={movieId}
-                  navigateHome={this.navigateHome}
-                />;
+            />
+            <Route
+              path="/:id"
+              render={({ match }) => {
+                const movieId = parseInt(match.params.id);
+                return (
+                  <MovieInfo id={movieId} navigateHome={this.navigateHome} />
+                );
               }}
-              />
-            </>
-            <Route>
-              <Error error={this.state.error} navigateHome={this.navigateHome} />
-            </Route>
+            />
+            {/* <Route
+              path=" "
+              render={() => (
+                <Error
+                  error={this.state.error}
+                  navigateHome={this.navigateHome}
+                />
+              )}
+            ></Route> */}
           </Switch>
         </main>
       );
