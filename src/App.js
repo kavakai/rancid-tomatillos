@@ -14,9 +14,10 @@ class App extends Component{
     this.state = {
       movies: [],
       isSelected: false,
-      // singleMovie: {},
+      singleMovie: {},
       error: '',
-      isError: false
+      isError: false,
+      isLoading: true
     }
   }
 
@@ -45,10 +46,11 @@ class App extends Component{
         }
       })
       .then((data) =>
-        this.setState({ isSelected: true, singleMovie: data.movie })
+        this.setState({ isSelected: true, singleMovie: data.movie, isLoading: false })
       )
       .catch(() => {this.setState({ isError: true });
       });
+    console.log('Single Movie', this.singleMovie)
     console.log('selectMovie firing')
   }
 
@@ -57,37 +59,41 @@ class App extends Component{
   }
 
   render() {
-    // if (this.state.singleMovie === undefined) {
-    //   return <div className="loading">Loading</div>;
-    // }
-    return (
-      <main>   
-        <Route exact path="/" render={() =>
-          <>
-          <Header />
-          <MovieContainer
-            movies={this.state.movies}
-            selectMovie={this.selectMovie}
+    if (this.state.loading) {
+      return <div className="loading">Loading</div>;
+    } else {    
+      return (
+        <main>   
+          <Route exact path="/" render={() =>
+            <>
+            <Header />
+            <MovieContainer
+              movies={this.state.movies}
+              selectMovie={this.selectMovie}
+              />
+            </>
+            }
             />
-          </>
-          }
-          />
-
-        <Route path='/:id'
-          render={({ match }) => {  
-            console.log(match)
-            const movieToRender = this.state.movies.find(movie => movie.id === parseInt(match.params.id))
-            console.log('SHOW ME', movieToRender)
-            return <MovieInfo movie={movieToRender} />
-            // return <MovieInfo movie={match} />
-          }
-          }/>   
-        <Route>
-          <Error error={this.state.error} navigateHome={this.navigateHome} /> 
-        </Route>
-      </main>
-    );
-  }
+  
+          <Route path='/:id'
+            render={({ match }) => {  
+              // console.log('method', selectMovie)
+              // console.log(match)
+              // console.log('state', this.state.singleMovie)
+              // const movieToRender = this.state.movies.find(movie => movie.id === parseInt(match.params.id))
+              // console.log('SHOW ME', movieToRender)
+              const movieId = parseInt(match.params.id)
+              return <MovieInfo id={movieId} navigateHome={this.navigateHome} />
+              // return <MovieInfo movie={match} />
+            }
+            }/>   
+          <Route>
+            <Error error={this.state.error} navigateHome={this.navigateHome} /> 
+          </Route>
+        </main>
+      );
+    }
+    }
 
 }
 

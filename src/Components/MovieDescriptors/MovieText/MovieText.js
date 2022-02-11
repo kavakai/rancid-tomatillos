@@ -2,17 +2,17 @@ import React from "react";
 import './MovieText.css';
 
 const MovieText = ({ movie }) => {
-  console.log(movie)
+  console.log('Text', movie)
   let movieDate = movie.release_date.split("-");
   movieDate = [movieDate[1], movieDate[2], movieDate[0]].join("-");
   return (
     <div className="text-section">
-      {/* <ul className="genres">
+      <ul className="genres">
         {movie.genres.length > 0 &&
           movie.genres.map((genre, i) => {
             return <li key={i}>{genre}</li>;
           })}
-      </ul> */}
+      </ul>
       {movie.overview && <p className="overview">{movie.overview}</p>}
       <div className="production-info">
         {movieDate && <p>Release Date: {movieDate}</p>}
