@@ -79,6 +79,16 @@ describe('MovieInfo view', () => {
       .should('not.exist')
   })
 
+  it('Should have a button to return to home page', () => {
+      cy.visit("http://localhost:3000/340102")
+        .get("button")
+        .click()
+        .url()
+        .should("eq", "http://localhost:3000/")
+        .get(".poster")
+        .should("exist");
+  })
+
   // it('User should be able to navigate with back/forward browser buttons', () => {
   //   cy.intercept(
   //     "https://rancid-tomatillos.herokuapp.com/api/v2/movies/340102",
