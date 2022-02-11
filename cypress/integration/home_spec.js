@@ -31,5 +31,13 @@ describe('Home page', () => {
     );
   })
 
-
+  it('A user should be able to refresh page and still see all movie covers', () => {
+    let fakeApi = "https://rancid-tomatillos.herokuapp.com/api/v2/movies";
+    cy.intercept(fakeApi, movieData)
+      .visit("http://localhost:3000")
+      .reload()
+      .contains("h1", "Rancid Tomatillos")
+      .get(".poster")
+      .should("be.visible");
+  });
 });

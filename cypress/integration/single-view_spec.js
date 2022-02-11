@@ -1,3 +1,5 @@
+import movieData from "../../src/MovieData";
+
 describe('MovieInfo view', () => {
     let sadMovie = {
       id: 737173,
@@ -52,8 +54,42 @@ describe('MovieInfo view', () => {
       cy.intercept(
         "https://rancid-tomatillos.herokuapp.com/api/v2/movies/737173",
         { body: { sadMovie } }
-      ).visit("http://localhost:3000/737173")
+      )
+        .visit("http://localhost:3000/737173")
         .get('.genres')
         .should('not.exist')
-    })
+  })
+  
+  it('Should show current movie path in url', () => {
+    cy.intercept(
+      "https://rancid-tomatillos.herokuapp.com/api/v2/movies/340102",
+      { body: { movie } }
+    )
+      .visit("http://localhost:3000/340102")
+      .url()
+      .should('include', '/340102')
+  })
+
+  it('Should not display any movies from the home page view', () => {
+    cy.intercept(
+      "https://rancid-tomatillos.herokuapp.com/api/v2/movies/340102",
+      { body: { movie } })
+      .visit("http://localhost:3000/340102")
+      .get('.poster')
+      .should('not.exist')
+  })
+
+  // it('User should be able to navigate with back/forward browser buttons', () => {
+  //   cy.intercept(
+  //     "https://rancid-tomatillos.herokuapp.com/api/v2/movies/340102",
+  //     { body: { movie } }
+  //   )
+  //     .visit("http://localhost:3000/340102")
+  //     .go("back")
+  //     .location(
+  //       "http://https://rancid-tomatillos.herokuapp.com/api/v2/movies/:3000/"
+  //     )
+  //     .should("not.include", "/340102");
+  // })
+
 });
