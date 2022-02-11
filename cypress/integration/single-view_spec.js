@@ -1,6 +1,4 @@
 describe('MovieInfo view', () => {
-  
-  beforeEach(() => {
     let sadMovie = {
       id: 737173,
       title: 'Maratón After',
@@ -31,13 +29,12 @@ describe('MovieInfo view', () => {
       runtime: 94,
       tagline: "It's time to face your demons",
       average_rating: 4,
-    };
+    }
 
     it('should display a single movie when a user clicks on a movie poster', () => {
-      cy.visit("http://localhost:3000")
-        .intercept(movie)
-        .contains('h2', movie.title)
+      cy.intercept("https://rancid-tomatillos.herokuapp.com/api/v2/movies/340102", { body: {movie} })
+        .visit("http://localhost:3000/340102")
+        .contains("h2", movie.title);
     })
     
-  });
-})
+});
