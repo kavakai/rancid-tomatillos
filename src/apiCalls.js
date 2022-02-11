@@ -20,9 +20,4 @@ export const fetchApi = (type, id) => {
     endPoint = `https://rancid-tomatillos.herokuapp.com/api/v2/${type}/${id}`
   }
   return fetch(endPoint)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-    })
 };
