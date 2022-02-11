@@ -6,6 +6,7 @@ import Header from './Components/Header/Header';
 import MovieInfo from './Components/MovieInfo/MovieInfo';
 import { fetchApi } from './apiCalls';
 import Error from './Components/Error/Error';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component{
   constructor() {
@@ -15,23 +16,23 @@ class App extends Component{
       isSelected: false,
       singleMovie: {},
       error: '',
+      isError: false,
+      loading: true,
     }
   }
 
   componentDidMount = () => {
     fetchApi("movies")
-      .then((data) => this.setState({ movies: data.movies }))
-      .catch((error) => this.setState({ error: error }));
-  }
-
-  selectMovie = (id) => {
-    fetchApi("movies", id)
-      .then((data) =>
-        this.setState({ isSelected: true, singleMovie: data.movie })
-      )
-      .catch((error) => {
-        this.setState({ error: error });
-      });
+      .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else { 
+        this.setState({ error: response.status })
+      } 
+      })
+      .then((data) => this.setState({ movies: data.movies, loading: false }))
+      .catch(() => this.setState({ isError: true })
+    );
   }
 
   navigateHome = () => {
@@ -39,30 +40,39 @@ class App extends Component{
   }
 
   render() {
-    return (
-      <main>
-        {this.state.isSelected && !this.state.error && (
-          <>
-            <MovieInfo
-              movie={this.state.singleMovie}
-              navigateHome={this.navigateHome}
-            />
-          </>
-        )}
-
-        {!this.state.isSelected && !this.state.error ? (
-          <>
-            <Header />
-            <MovieContainer
-              movies={this.state.movies}
-              selectMovie={this.selectMovie}
-            />
-          </>
-        ) : (
-            this.state.error && <Error error={this.state.error} navigateHome={this.navigateHome} /> 
-        )}
-      </main>
-    );
+    if (this.state.loading) {
+      return <div className="loader"></div>
+    } else {
+      return (
+        <main>
+          <Switch>
+            <>
+              <Route exact path="/" render={() => (
+                <>
+                  <Header />
+                  <MovieContainer
+                    movies={this.state.movies}
+                    selectMovie={this.selectMovie}
+                  />
+                </>
+              )}
+              />
+              <Route path="/:id" render={({ match }) => {
+                const movieId = parseInt(match.params.id)
+                return <MovieInfo
+                  id={movieId}
+                  navigateHome={this.navigateHome}
+                />;
+              }}
+              />
+            </>
+            <Route>
+              <Error error={this.state.error} navigateHome={this.navigateHome} />
+            </Route>
+          </Switch>
+        </main>
+      );
+    }
   }
 
 }
