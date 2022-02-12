@@ -56,7 +56,7 @@ class App extends Component{
 
   filterByTitle = (input) => {
     let text = input.toLowerCase()
-    let filtered = this.state.movies.find(movie => movie.title.toLowerCase().includes(text))
+    let filtered = this.state.movies.filter(movie => movie.title.toLowerCase().includes(text))
     this.setState({filteredMovies: filtered})
   }
 
