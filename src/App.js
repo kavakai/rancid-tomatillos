@@ -35,10 +35,11 @@ class App extends Component{
       .then((data) => this.setState({ movies: data.movies, loading: false }))
       .catch(() => this.setState({ isError: true })
     );
+    console.log('firing')
   }
 
   navigateHome = () => {
-    this.setState({isSelected: false, singleMovie: {}, error: ''})
+    this.setState({filteredMovies: ''})
   }
 
   // sortMovies = (category) => {
@@ -94,6 +95,7 @@ class App extends Component{
                   <Header />
                   <Sidebar filterByTitle={this.filterByTitle} />
                   <MovieContainer
+                    navigateHome={this.navigateHome}
                     filteredMovies={this.state.filteredMovies}
                     movies={this.state.movies}
                     selectMovie={this.selectMovie}

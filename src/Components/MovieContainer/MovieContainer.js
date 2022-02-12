@@ -17,7 +17,6 @@ const MovieContainer = ({ movies, selectMovie, filteredMovies, filterMovies }) =
   })
   return (
     <>
-      <Sidebar />
       <section className="poster-display">
         { posters }
       </section>
