@@ -18,6 +18,7 @@ class App extends Component{
       error: '',
       isError: false,
       loading: true,
+      filteredMovies: [],
     }
   }
 
@@ -37,6 +38,10 @@ class App extends Component{
 
   navigateHome = () => {
     this.setState({isSelected: false, singleMovie: {}, error: ''})
+  }
+
+  sortMovies = () => {
+    this.state.movies.filter(movie => this.setState({filteredMovies: movie}))
   }
 
   render() {
