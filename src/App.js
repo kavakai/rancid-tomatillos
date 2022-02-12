@@ -7,6 +7,7 @@ import MovieInfo from './Components/MovieInfo/MovieInfo';
 import { fetchApi } from './apiCalls';
 import Error from './Components/Error/Error';
 import { Route, Switch } from 'react-router-dom';
+// import Sidebar from './Components/Sidebar/Sidebar';
 
 class App extends Component{
   constructor() {
@@ -40,9 +41,35 @@ class App extends Component{
     this.setState({isSelected: false, singleMovie: {}, error: ''})
   }
 
-  sortMovies = () => {
-    this.state.movies.filter(movie => this.setState({filteredMovies: movie}))
+  // sortMovies = (category) => {
+  //   if (category === 'newToOldRelease') {
+  //     let filtered = this.state.movies.sort((movA, movB) => new Date(movA.release_date) - new Date(movB.release_date))
+  //     this.setState({ filteredMovies: { ...filtered } })
+  //   } else if (category === 'oldToNewRelease') {
+  //     let filtered = this.state.movies.sort((movA, movB) => new Date(movB.release_date) - new Date(movA.release_date))
+  //     this.setState({ filteredMovies: { ...filtered } })
+  //   } else if (category === 'ratings') {
+  //     let filtered = this.state.movies.sort((movA, movB) => (movA.average_rating) - (movB.average_rating))
+  //     this.setState({ filteredMovies: { ...filtered } })
+  //   }
+  // }
+
+  filterByTitle = (input) => {
+    let text = input.toLowerCase()
+    let filtered = this.state.movies.find(movie => movie.title.toLowerCase().includes(text))
+    this.setState({filteredMovies: filtered})
   }
+
+  filterMovies = (input) => {
+    let filtered = this.state.movies.filter(movie => {
+      if (input === movie.average_rating.toString() || movie.release_date) {
+        this.setState({ filteredMovies: { ...filtered } })
+      } else {
+        this.setState({filteredMovies: 'Sorry, there are no matches'})
+      }
+    })
+  }
+  
 
   render() {
     if (this.state.loading && !this.state.error) {
@@ -60,7 +87,9 @@ class App extends Component{
                   :
                 <>
                   <Header />
-                  <MovieContainer
+                  {/* <Sidebar /> */}
+                    <MovieContainer
+                    filteredMovies={this.state.filteredMovies}
                     movies={this.state.movies}
                     selectMovie={this.selectMovie}
                   />

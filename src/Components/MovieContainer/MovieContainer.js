@@ -1,20 +1,29 @@
 import React from 'react';
 import './MovieContainer.css';
 import MoviePoster from '../MoviePoster/MoviePoster';
+import Sidebar from '../Sidebar/Sidebar';
 
-const MovieContainer = ({ movies, selectMovie }) => {
-  const posters = movies.flat(1).map(movie => {
+
+const MovieContainer = ({ movies, selectMovie, filteredMovies, filterMovies }) => {
+  let newMovies;
+  filteredMovies.length ? newMovies = filteredMovies : newMovies = movies;
+  const posters = newMovies.map(movie => {
     return (
       <MoviePoster
         poster={movie.poster_path}
         selectMovie={selectMovie} 
         id={movie.id}
       	key={movie.id} />)
-    })
-  return(
-  <section className="poster-display">
-    {posters}
-  </section>
+  })
+  return (
+    <>
+      <Sidebar />
+      <section className="poster-display">
+        { filteredMovies.length ?
+         filteredMovies :
+         posters }
+      </section>
+    </>
   )
 };
 
