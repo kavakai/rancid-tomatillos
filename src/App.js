@@ -7,7 +7,7 @@ import MovieInfo from './Components/MovieInfo/MovieInfo';
 import { fetchApi } from './apiCalls';
 import Error from './Components/Error/Error';
 import { Route, Switch } from 'react-router-dom';
-// import Sidebar from './Components/Sidebar/Sidebar';
+import Sidebar from './Components/Sidebar/Sidebar';
 
 class App extends Component{
   constructor() {
@@ -19,7 +19,7 @@ class App extends Component{
       error: '',
       isError: false,
       loading: true,
-      filteredMovies: [],
+      filteredMovies: '',
     }
   }
 
@@ -55,9 +55,12 @@ class App extends Component{
   // }
 
   filterByTitle = (input) => {
+    console.log('firing')
+    console.log('FBT', input)
     let text = input.toLowerCase()
     let filtered = this.state.movies.filter(movie => movie.title.toLowerCase().includes(text))
-    this.setState({filteredMovies: filtered})
+    this.setState({ filteredMovies: [ ...filtered ] })
+    console.log(this.state.filteredMovies)
   }
 
   filterMovies = (input) => {
@@ -72,6 +75,8 @@ class App extends Component{
   
 
   render() {
+    console.log(this.state.movies)
+    console.log(this.state.filteredMovies)
     if (this.state.loading && !this.state.error) {
       return <div className="loader"></div>
     } else {
@@ -87,8 +92,8 @@ class App extends Component{
                   :
                 <>
                   <Header />
-                  {/* <Sidebar /> */}
-                    <MovieContainer
+                  <Sidebar filterByTitle={this.filterByTitle} />
+                  <MovieContainer
                     filteredMovies={this.state.filteredMovies}
                     movies={this.state.movies}
                     selectMovie={this.selectMovie}
@@ -105,15 +110,6 @@ class App extends Component{
                 );
               }}
             />
-            {/* <Route
-              path=" "
-              render={() => (
-                <Error
-                  error={this.state.error}
-                  navigateHome={this.navigateHome}
-                />
-              )}
-            ></Route> */}
           </Switch>
         </main>
       );

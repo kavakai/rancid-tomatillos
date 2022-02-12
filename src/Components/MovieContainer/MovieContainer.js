@@ -19,9 +19,7 @@ const MovieContainer = ({ movies, selectMovie, filteredMovies, filterMovies }) =
     <>
       <Sidebar />
       <section className="poster-display">
-        { filteredMovies.length ?
-         filteredMovies :
-         posters }
+        { posters }
       </section>
     </>
   )

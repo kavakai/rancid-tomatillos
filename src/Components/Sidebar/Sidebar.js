@@ -3,19 +3,28 @@ import './Sidebar.css';
 import React, { Component } from 'react';
 
 class Sidebar extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       textInput: '',
       dateInput: '',
-      ratingInput: ''
+      ratingInput: '',
     }
   }
 
   handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value})
-    }
+  }
+  
+  seachTitle = (event) => {
+    event.preventDefault()
+    this.props.filterByTitle(this.state.textInput)
+    this.clearInput()
+  }
 
+  clearInput = () => {
+    this.setState({textInput: ''})
+  }
   render() {
     return (
       <ProSidebar>
@@ -30,6 +39,7 @@ class Sidebar extends Component {
               onChange={(event) => this.handleChange(event)}
             />
           </form>
+          <button onClick={(event) => this.seachTitle(event)}>SUBMIT</button>
           {/* <MenuItem>Dashboard</MenuItem>
           <SubMenu title="Components">
             <MenuItem>Component 1</MenuItem>
