@@ -25,12 +25,14 @@ class Sidebar extends Component {
     console.log('ST', event.target.value)
     console.log(this.state[event.target.name], 'text in sidebar comp')
     event.preventDefault()
-    this.props.filterByTitle(this.state)
-    this.clearInput()
+    this.props.filterMovies(this.state)
+    // this.clearInput()
   }
 
-  clearInput = () => {
-    this.setState({textInput: '', dateInput: '', ratingInput: ''})
+  clearInput = (event) => {
+    event.preventDefault()
+    this.setState({ textInput: '', dateInput: '', ratingInput: '' })
+    this.props.clearFiltered()
   }
 
   collapseMenu = () => {
@@ -114,6 +116,7 @@ class Sidebar extends Component {
               </SubMenu>
             </form>
             <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
+            <button onClick={(event) => this.clearInput(event)}>CLEAR</button>
           </Menu>
         </SidebarContent>
     </ProSidebar>
