@@ -1,4 +1,5 @@
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent } from 'react-pro-sidebar';
+// import 'react-pro-sidebar/dist/css/styles.css'
 import './Sidebar.css';
 import React, { Component } from 'react';
 
@@ -34,96 +35,93 @@ class Sidebar extends Component {
   }
 
   collapseMenu = () => {
-    this.state.menuCollapse ? this.setState(this.state.menuCollapse= false) : this.setState(this.state.menuCollapse= true)
+    this.state.menuCollapse ? this.setState({menuCollapse: false}) : this.setState({menuCollapse: true})
   }
 
   render() {
     return (
-      <ProSidebar collapsed={this.state.menuCollapse} onToggle={() => this.collapseMenu}>
-        {/* <SidebarHeader>Search</SidebarHeader> */}
-        <SidebarContent>
-          <Menu iconShape="round" popperArrow= {true}>
-            <form>
-              <SubMenu title="Search By Title">
-                <MenuItem>
-                  <input
-                    type="text"
-                    placeholder="Title"
-                    name="textInput"
-                    value={this.state.textInput}
-                    onChange={(event) => this.handleChange(event)}
-                  />
-                </MenuItem>
-              </SubMenu>
-              <SubMenu title="Search By Release Date">
-              <MenuItem>
-                <input
-                  type="month"
-                  name="dateInput"
-                  value={this.state.dateInput}
-                  onChange={(event) => this.handleChange(event)} 
-                />
-              </MenuItem>
-              </SubMenu>
-              <SubMenu title="Search by Rating">
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={1} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={2} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={3} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={4} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️⭐️⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={5}
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️⭐️⭐️⭐️</lable>
-                </MenuItem>
-              </SubMenu>
-            </form>
-            <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
-          </Menu>
-        </SidebarContent>
-    </ProSidebar>
+      // <aside className='sidebar'>
+          <ProSidebar collapsed={this.state.menuCollapse} onToggle={() => this.collapseMenu}>
+            {/* <SidebarHeader>Search</SidebarHeader> */}
+            <SidebarContent>
+              <Menu iconShape="round" popperArrow= {true}>
+                <form>
+                  <SubMenu title="Search By Title">
+                    <MenuItem>
+                      <input
+                        type="text"
+                        placeholder="Title"
+                        name="textInput"
+                        value={this.state.textInput}
+                        onChange={(event) => this.handleChange(event)}
+                      />
+                    </MenuItem>
+                  </SubMenu>
+                  <SubMenu title="Search By Release Date">
+                  <MenuItem>
+                    <input
+                      type="month"
+                      name="dateInput"
+                      value={this.state.dateInput}
+                      onChange={(event) => this.handleChange(event)} 
+                    />
+                  </MenuItem>
+                  </SubMenu>
+                  <SubMenu title="Search by Rating">
+                    <MenuItem>
+                      <input 
+                        type="radio" 
+                        name="ratingInput" 
+                        value={1} 
+                        onChange={(event) => this.handleChange(event)} 
+                      />
+                      <lable>⭐️</lable>
+                    </MenuItem>
+                    <MenuItem>
+                      <input 
+                        type="radio" 
+                        name="ratingInput" 
+                        value={2} 
+                        onChange={(event) => this.handleChange(event)} 
+                      />
+                      <lable>⭐️⭐️</lable>
+                    </MenuItem>
+                    <MenuItem>
+                      <input 
+                        type="radio" 
+                        name="ratingInput" 
+                        value={3} 
+                        onChange={(event) => this.handleChange(event)} 
+                      />
+                      <lable>⭐️⭐️⭐️</lable>
+                    </MenuItem>
+                    <MenuItem>
+                      <input 
+                        type="radio" 
+                        name="ratingInput" 
+                        value={4} 
+                        onChange={(event) => this.handleChange(event)} 
+                      />
+                      <lable>⭐️⭐️⭐️⭐️</lable>
+                    </MenuItem>
+                    <MenuItem>
+                      <input 
+                        type="radio" 
+                        name="ratingInput" 
+                        value={5}
+                        onChange={(event) => this.handleChange(event)} 
+                      />
+                      <lable>⭐️⭐️⭐️⭐️⭐️</lable>
+                    </MenuItem>
+                  </SubMenu>
+                </form>
+                <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
+              </Menu>
+            </SidebarContent>
+        </ProSidebar>
+      // </aside>
     )
   }
 };
-{/* <MenuItem>Dashboard</MenuItem>
-<SubMenu title="Components">
-  <MenuItem>Component 1</MenuItem>
-  <MenuItem>Component 2</MenuItem>
-</SubMenu> */}
 
 export default Sidebar;
