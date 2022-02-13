@@ -1,4 +1,4 @@
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
 import './Sidebar.css';
 import React, { Component } from 'react';
 
@@ -9,46 +9,121 @@ class Sidebar extends Component {
       textInput: '',
       dateInput: '',
       ratingInput: '',
+      menuCollapse: false,
     }
+    // console.log('WhatIsThis')
   }
 
   handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value})
+    console.log('HC', event.target.name)
+    this.setState({ [event.target.name]: event.target.value });
+    // this.searchTitle(event);
+    console.log(this.state)
   }
   
-  seachTitle = (event) => {
+  searchTitle = (event) => {
+    console.log('ST', event.target.value)
+    console.log(this.state[event.target.name], 'text in sidebar comp')
     event.preventDefault()
-    this.props.filterByTitle(this.state.textInput)
+    this.props.filterByTitle(this.state)
     this.clearInput()
   }
 
   clearInput = () => {
-    this.setState({textInput: ''})
+    this.setState({textInput: '', dateInput: '', ratingInput: ''})
   }
+
+  collapseMenu = () => {
+    this.state.menuCollapse ? this.setState(this.state.menuCollapse= false) : this.setState(this.state.menuCollapse= true)
+  }
+
   render() {
     return (
-      <ProSidebar>
-        <SidebarHeader>Search</SidebarHeader>
-        <Menu iconShape="round">
-          <form>
-            <input
-              type="text"
-              placeholder="Title"
-              name="textInput"
-              value={this.state.textInput}
-              onChange={(event) => this.handleChange(event)}
-            />
-          </form>
-          <button onClick={(event) => this.seachTitle(event)}>SUBMIT</button>
-          {/* <MenuItem>Dashboard</MenuItem>
-          <SubMenu title="Components">
-            <MenuItem>Component 1</MenuItem>
-            <MenuItem>Component 2</MenuItem>
-          </SubMenu> */}
-        </Menu>
+      <ProSidebar collapsed={this.state.menuCollapse} onToggle={() => this.collapseMenu}>
+        {/* <SidebarHeader>Search</SidebarHeader> */}
+        <SidebarContent>
+          <Menu iconShape="round" popperArrow= {true}>
+            <form>
+              <SubMenu title="Search By Title">
+                <MenuItem>
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    name="textInput"
+                    value={this.state.textInput}
+                    onChange={(event) => this.handleChange(event)}
+                  />
+                </MenuItem>
+              </SubMenu>
+              <SubMenu title="Search By Release Date">
+              <MenuItem>
+                <input
+                  type="month"
+                  name="dateInput"
+                  value={this.state.dateInput}
+                  onChange={(event) => this.handleChange(event)} 
+                />
+              </MenuItem>
+              </SubMenu>
+              <SubMenu title="Search by Rating">
+                <MenuItem>
+                  <input 
+                    type="radio" 
+                    name="ratingInput" 
+                    value={this.state.ratingInput} 
+                    onChange={(event) => this.handleChange(event)} 
+                  />
+                  <lable>⭐️</lable>
+                </MenuItem>
+                <MenuItem>
+                  <input 
+                    type="radio" 
+                    name="ratingInput" 
+                    value={this.state.ratingInput} 
+                    onChange={(event) => this.handleChange(event)} 
+                  />
+                  <lable>⭐️⭐️</lable>
+                </MenuItem>
+                <MenuItem>
+                  <input 
+                    type="radio" 
+                    name="ratingInput" 
+                    value={this.state.ratingInput} 
+                    onChange={(event) => this.handleChange(event)} 
+                  />
+                  <lable>⭐️⭐️⭐️</lable>
+                </MenuItem>
+                <MenuItem>
+                  <input 
+                    type="radio" 
+                    name="ratingInput" 
+                    value={this.state.ratingInput} 
+                    onChange={(event) => this.handleChange(event)} 
+                  />
+                  <lable>⭐️⭐️⭐️⭐️</lable>
+                </MenuItem>
+                <MenuItem>
+                  <input 
+                    type="radio" 
+                    name="ratingInput" 
+                    value={this.state.ratingInput} 
+                    onChange={(event) => this.handleChange(event)} 
+                  />
+                  <lable>⭐️⭐️⭐️⭐️⭐️</lable>
+                </MenuItem>
+              </SubMenu>
+            </form>
+            <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
+          </Menu>
+        </SidebarContent>
     </ProSidebar>
     )
   }
 };
+{/* <MenuItem>Dashboard</MenuItem>
+<SubMenu title="Components">
+  <MenuItem>Component 1</MenuItem>
+  <MenuItem>Component 2</MenuItem>
+</SubMenu> */}
 
 export default Sidebar;

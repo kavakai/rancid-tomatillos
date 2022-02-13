@@ -55,12 +55,32 @@ class App extends Component{
   //   }
   // }
 
-  filterByTitle = (input) => {
+  filterByTitle = ({textInput, dateInput, ratingInput}) => {
     console.log('firing')
-    console.log('FBT', input)
-    let text = input.toLowerCase()
-    let filtered = this.state.movies.filter(movie => movie.title.toLowerCase().includes(text))
-    this.setState({ filteredMovies: [ ...filtered ] })
+    console.log('FBT', dateInput)
+    let text = textInput.toLowerCase();
+    let filtered;
+    if (textInput.length) { 
+      filtered = this.state.movies.filter(movie => movie.title.toLowerCase().includes(text))
+      this.setState({ filteredMovies: [ ...filtered ] })
+    } else if (dateInput.length > 0) {
+      filtered = this.state.movies.filter(movie => {
+        let compareDate = movie.release_date.split('-').splice(0, 2);
+        compareDate = compareDate.join('-');
+        console.log('>X>X>X>', compareDate)
+        if (compareDate === dateInput) {
+          return movie
+        } 
+      })
+      this.setState({ filteredMovies: [ ...filtered ] })
+      console.log(ratingInput, 'obj')
+      console.log(filtered, 'filtered in filter')
+    } else if (ratingInput.length) {
+      filtered = this.state.movies.filter(movie => movie.average_rating.toString() === ratingInput)
+      this.setState({ filteredMovies: [ ...filtered ] })
+    } else {
+      console.log('Sorry, there are no matches')
+    }
     console.log(this.state.filteredMovies)
   }
 

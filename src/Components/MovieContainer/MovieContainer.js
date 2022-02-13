@@ -1,12 +1,11 @@
 import React from 'react';
 import './MovieContainer.css';
 import MoviePoster from '../MoviePoster/MoviePoster';
-import Sidebar from '../Sidebar/Sidebar';
-
 
 const MovieContainer = ({ movies, selectMovie, filteredMovies, filterMovies }) => {
   let newMovies;
-  filteredMovies.length ? newMovies = filteredMovies : newMovies = movies;
+  filteredMovies.length > 0 ? newMovies = filteredMovies : newMovies = movies;
+  console.log(newMovies, 'movie array in container')
   const posters = newMovies.map(movie => {
     return (
       <MoviePoster
