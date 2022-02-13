@@ -84,15 +84,15 @@ class App extends Component{
     console.log(this.state.filteredMovies)
   }
 
-  filterMovies = (input) => {
-    let filtered = this.state.movies.filter(movie => {
-      if (input === movie.average_rating.toString() || movie.release_date) {
-        this.setState({ filteredMovies: { ...filtered } })
-      } else {
-        this.setState({filteredMovies: 'Sorry, there are no matches'})
-      }
-    })
-  }
+  // filterMovies = (input) => {
+  //   let filtered = this.state.movies.filter(movie => {
+  //     if (input === movie.average_rating.toString() || movie.release_date) {
+  //       this.setState({ filteredMovies: { ...filtered } })
+  //     } else {
+  //       this.setState({filteredMovies: 'Sorry, there are no matches'})
+  //     }
+  //   })
+  // }
   
 
   render() {
