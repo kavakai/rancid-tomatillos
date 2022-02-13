@@ -35,7 +35,6 @@ class App extends Component{
       .then((data) => this.setState({ movies: data.movies, loading: false }))
       .catch(() => this.setState({ isError: true })
     );
-    console.log('firing')
   }
 
   navigateHome = () => {
@@ -57,7 +56,7 @@ class App extends Component{
 
   filterByTitle = ({textInput, dateInput, ratingInput}) => {
     console.log('firing')
-    console.log('FBT', dateInput)
+    console.log('FBT', ratingInput)
     let text = textInput.toLowerCase();
     let filtered;
     if (textInput.length) { 
@@ -65,19 +64,20 @@ class App extends Component{
       this.setState({ filteredMovies: [ ...filtered ] })
     } else if (dateInput.length > 0) {
       filtered = this.state.movies.filter(movie => {
-        let compareDate = movie.release_date.split('-').splice(0, 2);
-        compareDate = compareDate.join('-');
-        console.log('>X>X>X>', compareDate)
+        let compareDate = movie.release_date.split('-').splice(0, 2).join('-');
         if (compareDate === dateInput) {
           return movie
         } 
       })
       this.setState({ filteredMovies: [ ...filtered ] })
-      console.log(ratingInput, 'obj')
-      console.log(filtered, 'filtered in filter')
     } else if (ratingInput.length) {
-      filtered = this.state.movies.filter(movie => movie.average_rating.toString() === ratingInput)
-      this.setState({ filteredMovies: [ ...filtered ] })
+      filtered = this.state.movies.filter(movie => {
+        let rating = movie.average_rating / 2
+        if (rating >= ratingInput) {
+          return movie
+        }
+      })
+      this.setState({ filteredMovies: [...filtered] })
     } else {
       console.log('Sorry, there are no matches')
     }
@@ -96,8 +96,6 @@ class App extends Component{
   
 
   render() {
-    console.log(this.state.movies)
-    console.log(this.state.filteredMovies)
     if (this.state.loading && !this.state.error) {
       return <div className="loader"></div>
     } else {

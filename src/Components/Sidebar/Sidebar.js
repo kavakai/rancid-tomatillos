@@ -18,7 +18,7 @@ class Sidebar extends Component {
     console.log('HC', event.target.name)
     this.setState({ [event.target.name]: event.target.value });
     // this.searchTitle(event);
-    console.log(this.state)
+    console.log(this.state, 'state in sidebar')
   }
   
   searchTitle = (event) => {
@@ -70,7 +70,7 @@ class Sidebar extends Component {
                   <input 
                     type="radio" 
                     name="ratingInput" 
-                    value={this.state.ratingInput} 
+                    value={1} 
                     onChange={(event) => this.handleChange(event)} 
                   />
                   <lable>⭐️</lable>
@@ -79,7 +79,7 @@ class Sidebar extends Component {
                   <input 
                     type="radio" 
                     name="ratingInput" 
-                    value={this.state.ratingInput} 
+                    value={2} 
                     onChange={(event) => this.handleChange(event)} 
                   />
                   <lable>⭐️⭐️</lable>
@@ -88,7 +88,7 @@ class Sidebar extends Component {
                   <input 
                     type="radio" 
                     name="ratingInput" 
-                    value={this.state.ratingInput} 
+                    value={3} 
                     onChange={(event) => this.handleChange(event)} 
                   />
                   <lable>⭐️⭐️⭐️</lable>
@@ -97,7 +97,7 @@ class Sidebar extends Component {
                   <input 
                     type="radio" 
                     name="ratingInput" 
-                    value={this.state.ratingInput} 
+                    value={4} 
                     onChange={(event) => this.handleChange(event)} 
                   />
                   <lable>⭐️⭐️⭐️⭐️</lable>
@@ -106,7 +106,7 @@ class Sidebar extends Component {
                   <input 
                     type="radio" 
                     name="ratingInput" 
-                    value={this.state.ratingInput} 
+                    value={5}
                     onChange={(event) => this.handleChange(event)} 
                   />
                   <lable>⭐️⭐️⭐️⭐️⭐️</lable>
