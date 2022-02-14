@@ -1,6 +1,7 @@
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
-// import 'react-pro-sidebar/dist/css/styles.css'
+import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
 import './Sidebar.css';
+import searchIcon from '../../assets/searching.png';
+import searchReel from '../../assets/searchIcon.png';
 import React, { Component } from 'react';
 
 class Sidebar extends Component {
@@ -16,17 +17,17 @@ class Sidebar extends Component {
   }
 
   handleChange = (event) => {
-    console.log('HC', event.target.name)
+    // console.log('HC', event.target.name)
     this.setState({ [event.target.name]: event.target.value });
     this.searchTitle(event);
-    console.log(this.state, 'state in sidebar')
+    // console.log(this.state, 'state in sidebar')
   }
   
   searchTitle = (event) => {
-    console.log('ST', event.target.value)
-    console.log(this.state[event.target.name], 'text in sidebar comp')
+    // console.log('ST', event.target.value)
+    // console.log(this.state[event.target.name], 'text in sidebar comp')
     event.preventDefault()
-    this.props.filterByTitle(this.state)
+    this.props.filterMovies(this.state)
     this.clearInput()
   }
 
@@ -42,15 +43,17 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <aside className='sidebar'>
-          <button onClick={this.collapseMenu}>➠</button>
+      <aside className="sidebar">
+        <button onClick={this.collapseMenu}>
+          <img className="searchIcon" src={searchIcon} alt="Search Icon"/></button>
         <ProSidebar collapsed={this.state.menuCollapse}>
           <SidebarHeader>Search All Movies</SidebarHeader>
           <SidebarContent>
-            <Menu iconShape="round">
+            <Menu>
                 <form>
               <MenuItem>
                 <input
+                  className="input"
                   type="text"
                   placeholder="Movie Title"
                   name="textInput"
@@ -58,16 +61,18 @@ class Sidebar extends Component {
                   onChange={(event) => this.handleChange(event)}
                 />
               </MenuItem>
-              <button className='submit hide' onClick={(event) => this.searchTitle(event)}>Search</button>
+              <button className='submit hide' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
               <MenuItem>
-                <input
+                  <input
+                  className="input"  
                   type="month"
                   name="dateInput"
+                  max={"2022-02"}
                   value={this.state.dateInput}
                   onChange={(event) => this.handleChange(event)} 
                 />
               </MenuItem>
-              <button className='submit hide' onClick={(event) => this.searchTitle(event)}>Search</button>
+              <button className='submit hide' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
               <MenuItem>
                 <input 
                   type="radio" 
@@ -114,7 +119,7 @@ class Sidebar extends Component {
                 <lable>⭐️⭐️⭐️⭐️⭐️</lable>
               </MenuItem>
                 </form>
-                <button className='submit hide' onClick={(event) => this.searchTitle(event)}>Search</button>
+                <button className='submit hide' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
             </Menu>
           </SidebarContent>
       </ProSidebar>
