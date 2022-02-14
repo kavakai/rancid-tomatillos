@@ -19,7 +19,7 @@
 
 .pro-sidebar {
   /* color: #adadad; */
-  height: 100%;
+  height: fit-content;
   width: 270px;
   min-width: 270px;
   text-align: left;
@@ -69,8 +69,8 @@
     z-index: 100;
     display: none; }
   .pro-sidebar.collapsed {
-    width: 30px;
-    min-width: 30px; }
+    width: 0px;
+    min-width: 0px; }
   .pro-sidebar.rtl {
     text-align: right;
     direction: rtl; }
@@ -437,9 +437,15 @@
   border: none;
 }
 
-.submit {
+.sidebar > button {
+  background-color: transparent;
+  border: none;
 }
 
-.hide {
-  display: none;
+.submit {
+  margin: 0.25rem 0 1.75rem 1.75rem;
 }
+
+/* .hide {
+  display: none;
+} */
