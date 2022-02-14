@@ -1,11 +1,1 @@
 @import 'react-pro-sidebar/dist/css/styles.css';
-
-.pro-sidebar {
-  height: inherit;
-}
-
-.filter-buttons {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 2rem;
-}

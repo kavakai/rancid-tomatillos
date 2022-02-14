@@ -84,7 +84,7 @@ class App extends Component{
   }
 
   clearFiltered = () => {
-    this.setState({filteredMovies: ''})
+    this.setState({filteredMovies: '', error: ''})
   }
   // filterMovies = (input) => {
   //   let filtered = this.state.movies.filter(movie => {
@@ -108,7 +108,8 @@ class App extends Component{
               render={() => (
                 this.state.error
                   ? <Error
-                  error={this.state.error}
+                    error={this.state.error}
+                    clearFiltered={this.clearFiltered}
                   />
                   :
                 <>
