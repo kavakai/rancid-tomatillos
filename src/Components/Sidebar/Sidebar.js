@@ -19,7 +19,7 @@ class Sidebar extends Component {
   handleChange = (event) => {
     // console.log('HC', event.target.name)
     this.setState({ [event.target.name]: event.target.value });
-    this.searchTitle(event);
+    // this.searchTitle(event);
     // console.log(this.state, 'state in sidebar')
   }
   
@@ -28,11 +28,13 @@ class Sidebar extends Component {
     // console.log(this.state[event.target.name], 'text in sidebar comp')
     event.preventDefault()
     this.props.filterMovies(this.state)
-    this.clearInput()
+    this.clearInput(event)
   }
 
-  clearInput = () => {
-    this.setState({textInput: '', dateInput: '', ratingInput: ''})
+  clearInput = (event) => {
+    event.preventDefault()
+    this.setState({ textInput: '', dateInput: '', ratingInput: '' })
+    // this.props.clearFiltered()
   }
 
   collapseMenu = () => {
@@ -61,7 +63,7 @@ class Sidebar extends Component {
                   onChange={(event) => this.handleChange(event)}
                 />
               </MenuItem>
-              <button className='submit hide' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
+              <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
               <MenuItem>
                   <input
                   className="input"  
@@ -72,7 +74,7 @@ class Sidebar extends Component {
                   onChange={(event) => this.handleChange(event)} 
                 />
               </MenuItem>
-              <button className='submit hide' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
+              <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
               <MenuItem>
                 <input 
                   type="radio" 
@@ -119,7 +121,8 @@ class Sidebar extends Component {
                 <lable>⭐️⭐️⭐️⭐️⭐️</lable>
               </MenuItem>
                 </form>
-                <button className='submit hide' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
+                <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon" />Search</button>
+                <button className='submit clear' onClick={this.props.clearFiltered}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>See All Movies</button>
             </Menu>
           </SidebarContent>
       </ProSidebar>

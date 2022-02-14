@@ -460,7 +460,6 @@
 
 .submit {
   margin: 0.4rem 0 1.75rem 1.75rem;
-  /* background-color: rgb(63, 63, 63); */
   background-color: #639FC0;
   border: none;
   border-radius: 0.25rem;
@@ -470,6 +469,6 @@
   font-size: 1rem;
 }
 
-/* .hide {
-  display: none;
-} */
+.clear {
+  margin: auto;
+}
