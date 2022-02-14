@@ -115,8 +115,10 @@ class Sidebar extends Component {
                 </MenuItem>
               </SubMenu>
             </form>
-            <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
-            <button onClick={(event) => this.clearInput(event)}>CLEAR</button>
+            <div className='filter-buttons'>
+              <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
+              <button onClick={(event) => this.clearInput(event)}>CLEAR</button>
+            </div>
           </Menu>
         </SidebarContent>
     </ProSidebar>

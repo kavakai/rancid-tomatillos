@@ -112,14 +112,16 @@ class App extends Component{
                   />
                   :
                 <>
-                  <Header />
+                    <Header />
+                    <section className='main-display'>
                     <Sidebar filterMovies={this.filterMovies} clearFiltered={this.clearFiltered}/>
-                  <MovieContainer
+                    <MovieContainer
                     navigateHome={this.navigateHome}
                     filteredMovies={this.state.filteredMovies}
                     movies={this.state.movies}
                     selectMovie={this.selectMovie}
                   />
+                    </section>
                 </>
               )}
             />
