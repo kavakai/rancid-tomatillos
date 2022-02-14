@@ -50,4 +50,24 @@ describe('Filter function', () => {
       .get("a")
       .should("have.attr", "href", "/694919");
   })
+
+  it('should return an error message if no movies are found', () => {
+    let fakeApi = "https://rancid-tomatillos.herokuapp.com/api/v2/movies";
+    cy.intercept(fakeApi, movieData)
+      .visit("http://localhost:3000")
+      .get(".pro-item-content")
+      .contains("Search by Rating")
+      .click()
+      .get('[type="radio"]')
+      .check("4")
+      .get("button")
+      .contains("SUBMIT")
+      .click()
+      .get(".poster")
+      .should("not.exist")
+      .get("h2")
+      .contains(
+        "No movies found, try again Error, Oops, our server is napping... Refresh page and try again"
+      );
+  })
 })
