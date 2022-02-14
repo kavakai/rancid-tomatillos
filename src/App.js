@@ -1,6 +1,6 @@
+// import movieData from './MovieData';
 import React, { Component } from 'react' 
 import './App.css';
-// import movieData from './MovieData';
 import MovieContainer from './Components/MovieContainer/MovieContainer';
 import Header from './Components/Header/Header';
 import MovieInfo from './Components/MovieInfo/MovieInfo';
@@ -41,20 +41,9 @@ class App extends Component{
     this.setState({filteredMovies: ''})
   }
 
-  // sortMovies = (category) => {
-  //   if (category === 'newToOldRelease') {
-  //     let filtered = this.state.movies.sort((movA, movB) => new Date(movA.release_date) - new Date(movB.release_date))
-  //     this.setState({ filteredMovies: { ...filtered } })
-  //   } else if (category === 'oldToNewRelease') {
-  //     let filtered = this.state.movies.sort((movA, movB) => new Date(movB.release_date) - new Date(movA.release_date))
-  //     this.setState({ filteredMovies: { ...filtered } })
-  //   } else if (category === 'ratings') {
-  //     let filtered = this.state.movies.sort((movA, movB) => (movA.average_rating) - (movB.average_rating))
-  //     this.setState({ filteredMovies: { ...filtered } })
-  //   }
-  // }
-
   filterMovies = ({textInput, dateInput, ratingInput}) => {
+    // console.log('firing')
+    // console.log('FBT', ratingInput)
     let text = textInput.toLowerCase();
     let filtered;
     if (textInput.length) { 
@@ -114,7 +103,7 @@ class App extends Component{
                   :
                 <>
                     <Header />
-                    <section className='main-display'>
+                    {/* <section className='main-display'> */}
                     <Sidebar filterMovies={this.filterMovies} clearFiltered={this.clearFiltered}/>
                     <MovieContainer
                     navigateHome={this.navigateHome}
@@ -122,7 +111,7 @@ class App extends Component{
                     movies={this.state.movies}
                     selectMovie={this.selectMovie}
                   />
-                    </section>
+                    {/* </section> */}
                 </>
               )}
             />

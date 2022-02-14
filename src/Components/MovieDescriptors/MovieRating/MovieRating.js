@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const MovieRating = ({ movie, showModal, trailer, navigateHome }) => {
   return (
     <div className="place-container">
-      <p>{movie.average_rating.toFixed(1)} ⭐️</p>
+      <p>{(movie.average_rating / 2).toFixed(1)} ⭐️</p>
       <Link className="place-container" to="/">
         <button onClick={() => navigateHome()}>Home</button>
       </Link>

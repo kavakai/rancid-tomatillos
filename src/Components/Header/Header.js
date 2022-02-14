@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import Tomatillo from '../../Tomatillo.png';
+import Tomatillo from '../../assets/Tomatillo.png';
 
 const Header = () => {
   return (

@@ -1,5 +1,7 @@
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
 import './Sidebar.css';
+import searchIcon from '../../assets/searching.png';
+import searchReel from '../../assets/searchIcon.png';
 import React, { Component } from 'react';
 
 class Sidebar extends Component {
@@ -9,126 +11,124 @@ class Sidebar extends Component {
       textInput: '',
       dateInput: '',
       ratingInput: '',
-      menuCollapse: false,
+      menuCollapse: true,
     }
     // console.log('WhatIsThis')
   }
 
   handleChange = (event) => {
-    console.log('HC', event.target.name)
+    // console.log('HC', event.target.name)
     this.setState({ [event.target.name]: event.target.value });
     // this.searchTitle(event);
-    console.log(this.state, 'state in sidebar')
+    // console.log(this.state, 'state in sidebar')
   }
   
   searchTitle = (event) => {
-    console.log('ST', event.target.value)
-    console.log(this.state[event.target.name], 'text in sidebar comp')
+    // console.log('ST', event.target.value)
+    // console.log(this.state[event.target.name], 'text in sidebar comp')
     event.preventDefault()
     this.props.filterMovies(this.state)
-    // this.clearInput()
+    this.clearInput(event)
   }
 
   clearInput = (event) => {
     event.preventDefault()
     this.setState({ textInput: '', dateInput: '', ratingInput: '' })
-    this.props.clearFiltered()
+    // this.props.clearFiltered()
   }
 
   collapseMenu = () => {
-    this.state.menuCollapse ? this.setState(this.state.menuCollapse= false) : this.setState(this.state.menuCollapse= true)
+    this.state.menuCollapse ? this.setState({ menuCollapse: false }) : this.setState({ menuCollapse: true })
+    // const submitBtn = document.querySelector('.submit');
+    // submitBtn.classList.toggle('hide')
   }
 
   render() {
     return (
-      <ProSidebar collapsed={this.state.menuCollapse} onToggle={() => this.collapseMenu}>
-        {/* <SidebarHeader>Search</SidebarHeader> */}
-        <SidebarContent>
-          <Menu iconShape="round" popperArrow= {true}>
-            <form>
-              <SubMenu title="Search By Title">
-                <MenuItem>
-                  <input
-                    type="text"
-                    placeholder="Title"
-                    name="textInput"
-                    value={this.state.textInput}
-                    onChange={(event) => this.handleChange(event)}
-                  />
-                </MenuItem>
-              </SubMenu>
-              <SubMenu title="Search By Release Date">
+      <aside className="sidebar">
+        <button onClick={this.collapseMenu}>
+          <img className="searchIcon" src={searchIcon} alt="Search Icon"/></button>
+        <ProSidebar collapsed={this.state.menuCollapse}>
+          <SidebarHeader>Search All Movies</SidebarHeader>
+          <SidebarContent>
+            <Menu>
+                <form>
               <MenuItem>
                 <input
+                  className="input"
+                  type="text"
+                  placeholder="Movie Title"
+                  name="textInput"
+                  value={this.state.textInput}
+                  onChange={(event) => this.handleChange(event)}
+                />
+              </MenuItem>
+              <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
+              <MenuItem>
+                  <input
+                  className="input"  
                   type="month"
                   name="dateInput"
+                  max={"2022-02"}
                   value={this.state.dateInput}
                   onChange={(event) => this.handleChange(event)} 
                 />
               </MenuItem>
-              </SubMenu>
-              <SubMenu title="Search by Rating">
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={1} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={2} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={3} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={4} 
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️⭐️⭐️</lable>
-                </MenuItem>
-                <MenuItem>
-                  <input 
-                    type="radio" 
-                    name="ratingInput" 
-                    value={5}
-                    onChange={(event) => this.handleChange(event)} 
-                  />
-                  <lable>⭐️⭐️⭐️⭐️⭐️</lable>
-                </MenuItem>
-              </SubMenu>
-            </form>
-            <div className='filter-buttons'>
-              <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
-              <button onClick={(event) => this.clearInput(event)}>CLEAR</button>
-            </div>
-          </Menu>
-        </SidebarContent>
-    </ProSidebar>
+              <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
+              <MenuItem>
+                <input 
+                  type="radio" 
+                  name="ratingInput" 
+                  value={1} 
+                  onChange={(event) => this.handleChange(event)} 
+                />
+                <lable>⭐️</lable>
+              </MenuItem>
+              <MenuItem>
+                <input 
+                  type="radio" 
+                  name="ratingInput" 
+                  value={2} 
+                  onChange={(event) => this.handleChange(event)} 
+                />
+                <lable>⭐️⭐️</lable>
+              </MenuItem>
+              <MenuItem>
+                <input 
+                  type="radio" 
+                  name="ratingInput" 
+                  value={3} 
+                  onChange={(event) => this.handleChange(event)} 
+                />
+                <lable>⭐️⭐️⭐️</lable>
+              </MenuItem>
+              <MenuItem>
+                <input 
+                  type="radio" 
+                  name="ratingInput" 
+                  value={4} 
+                  onChange={(event) => this.handleChange(event)} 
+                />
+                <lable>⭐️⭐️⭐️⭐️</lable>
+              </MenuItem>
+              <MenuItem>
+                <input 
+                  type="radio" 
+                  name="ratingInput" 
+                  value={5}
+                  onChange={(event) => this.handleChange(event)} 
+                />
+                <lable>⭐️⭐️⭐️⭐️⭐️</lable>
+              </MenuItem>
+                </form>
+                <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon" />Search</button>
+                <button className='submit clear' onClick={this.props.clearFiltered}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>See All Movies</button>
+            </Menu>
+          </SidebarContent>
+      </ProSidebar>
+    </aside>
     )
   }
 };
-{/* <MenuItem>Dashboard</MenuItem>
-<SubMenu title="Components">
-  <MenuItem>Component 1</MenuItem>
-  <MenuItem>Component 2</MenuItem>
-</SubMenu> */}
 
 export default Sidebar;

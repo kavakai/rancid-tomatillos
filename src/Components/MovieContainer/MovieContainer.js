@@ -5,7 +5,7 @@ import MoviePoster from '../MoviePoster/MoviePoster';
 const MovieContainer = ({ movies, selectMovie, filteredMovies, filterMovies }) => {
   let newMovies;
   filteredMovies.length > 0 ? newMovies = filteredMovies : newMovies = movies;
-  console.log(newMovies, 'movie array in container')
+  // console.log(newMovies, 'movie array in container')
   const posters = newMovies.map(movie => {
     return (
       <MoviePoster
