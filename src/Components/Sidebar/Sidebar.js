@@ -10,7 +10,7 @@ class Sidebar extends Component {
       textInput: '',
       dateInput: '',
       ratingInput: '',
-      menuCollapse: false,
+      menuCollapse: true,
     }
     // console.log('WhatIsThis')
   }
@@ -35,15 +35,18 @@ class Sidebar extends Component {
   }
 
   collapseMenu = () => {
-    this.state.menuCollapse ? this.setState({menuCollapse: false}) : this.setState({menuCollapse: true})
+    this.state.menuCollapse ? this.setState({ menuCollapse: false }) : this.setState({ menuCollapse: true })
+    const submitBtn = document.querySelector('.submit');
+    submitBtn.classList.toggle('hide')
   }
 
   render() {
     return (
       // <aside className='sidebar'>
-          <ProSidebar collapsed={this.state.menuCollapse} onToggle={() => this.collapseMenu}>
+      <ProSidebar collapsed={this.state.menuCollapse} popperArrow= {true}>
             {/* <SidebarHeader>Search</SidebarHeader> */}
-            <SidebarContent>
+          <button onClick={this.collapseMenu}>➠</button>
+        <SidebarContent>
               <Menu iconShape="round" popperArrow= {true}>
                 <form>
                   <SubMenu title="Search By Title">
@@ -115,7 +118,7 @@ class Sidebar extends Component {
                     </MenuItem>
                   </SubMenu>
                 </form>
-                <button onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
+                <button className='submit hide' onClick={(event) => this.searchTitle(event)}>SUBMIT</button>
               </Menu>
             </SidebarContent>
         </ProSidebar>
