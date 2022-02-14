@@ -4,13 +4,13 @@ import './Modal.css'
 const Modal = ({ hideModal, show, trailer }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
 
+  let source = trailer
+
+
   return (
-    <div className={showHideClassName}>
+    <div className={showHideClassName} onClick={() => hideModal()}>
       <section className="modal-main">
-        <iframe className='trailer' src={trailer}></iframe>
-        <button className='close-modal' type="button" onClick={() => hideModal()}>
-          Close
-        </button>
+        <iframe className='trailer' src={source} width='560' height='315' frameBorder='0' allow='autoplay' allowFullScreen></iframe>
       </section>
     </div>
   );

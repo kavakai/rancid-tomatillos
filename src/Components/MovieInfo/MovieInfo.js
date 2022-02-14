@@ -62,7 +62,11 @@ class MovieInfo extends Component {
   };
 
   hideModal = () => {
-    this.setState({ showModal: false });
+    this.setState({
+      showModal: false,
+      trailer: "https://www.youtube.com/embed/",
+    });
+    this.getVideos()
   };
 
   render() {
