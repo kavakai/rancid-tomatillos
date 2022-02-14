@@ -7,7 +7,7 @@ const Header = () => {
     <header className='header'>
       <img className='tomatillo' src={Tomatillo} alt='Tomatillo'/>
       <h1>Rancid Tomatillos</h1>
-      <img className='tomatillo' src={Tomatillo} alt='Tomatillo'/>
+      <img className='tomatillo' src={Tomatillo} alt='Tomatillo' />
     </header>
   )
 };

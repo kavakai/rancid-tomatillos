@@ -4,11 +4,11 @@ import MovieTitles from "./MovieTitles/MovieTitles";
 import MovieRating from "./MovieRating/MovieRating";
 import { NavLink } from "react-router-dom";
 
-const MovieDescriptors = ({ movie, getVideos, showModal, trailer }) => {
+const MovieDescriptors = ({ movie, showModal, trailer, navigateHome }) => {
   return (
     <article className="descriptors">
       <MovieTitles movie={movie} />
-      <MovieRating movie={movie} getVideos={getVideos} showModal={showModal} trailer={trailer} />
+      <MovieRating movie={movie} showModal={showModal} trailer={trailer} navigateHome={navigateHome} />
       <MovieText movie={movie} />
     </article>
   );
