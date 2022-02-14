@@ -67,7 +67,7 @@ describe('Filter function', () => {
       .should("not.exist")
       .get("h2")
       .contains(
-        "No movies found, try again Error, Oops, our server is napping... Refresh page and try again"
+        "No movies found, try again"
       );
   })
 })
