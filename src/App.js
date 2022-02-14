@@ -54,14 +54,12 @@ class App extends Component{
   //   }
   // }
 
-  filterByTitle = ({textInput, dateInput, ratingInput}) => {
-    console.log('firing')
-    console.log('FBT', ratingInput)
+  filterMovies = ({textInput, dateInput, ratingInput}) => {
     let text = textInput.toLowerCase();
     let filtered;
     if (textInput.length) { 
       filtered = this.state.movies.filter(movie => movie.title.toLowerCase().includes(text))
-      this.setState({ filteredMovies: [ ...filtered ] })
+      filtered.length > 0 ? this.setState({ filteredMovies: [ ...filtered ] }) : this.setState({error: "No movies found, try again"})
     } else if (dateInput.length > 0) {
       filtered = this.state.movies.filter(movie => {
         let compareDate = movie.release_date.split('-').splice(0, 2).join('-');
@@ -69,7 +67,9 @@ class App extends Component{
           return movie
         } 
       })
-      this.setState({ filteredMovies: [ ...filtered ] })
+      filtered.length > 0
+        ? this.setState({ filteredMovies: [...filtered] })
+        : this.setState({ error: "No movies found, try again" });
     } else if (ratingInput.length) {
       filtered = this.state.movies.filter(movie => {
         let rating = movie.average_rating / 2
@@ -77,13 +77,15 @@ class App extends Component{
           return movie
         }
       })
-      this.setState({ filteredMovies: [...filtered] })
-    } else {
-      console.log('Sorry, there are no matches')
+      filtered.length > 0
+        ? this.setState({ filteredMovies: [...filtered] })
+        : this.setState({ error: "No movies found, try again" }); 
     }
-    console.log(this.state.filteredMovies)
   }
 
+  clearFiltered = () => {
+    this.setState({filteredMovies: '', error: ''})
+  }
   // filterMovies = (input) => {
   //   let filtered = this.state.movies.filter(movie => {
   //     if (input === movie.average_rating.toString() || movie.release_date) {
@@ -106,18 +108,21 @@ class App extends Component{
               render={() => (
                 this.state.error
                   ? <Error
-                  error={this.state.error}
+                    error={this.state.error}
+                    clearFiltered={this.clearFiltered}
                   />
                   :
                 <>
-                  <Header />
-                  <Sidebar filterByTitle={this.filterByTitle} />
-                  <MovieContainer
+                    <Header />
+                    <section className='main-display'>
+                    <Sidebar filterMovies={this.filterMovies} clearFiltered={this.clearFiltered}/>
+                    <MovieContainer
                     navigateHome={this.navigateHome}
                     filteredMovies={this.state.filteredMovies}
                     movies={this.state.movies}
                     selectMovie={this.selectMovie}
                   />
+                    </section>
                 </>
               )}
             />
