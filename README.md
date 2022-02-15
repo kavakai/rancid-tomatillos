@@ -9,9 +9,8 @@
 
 ## Designers 
 
-[Lindsay Schnell](https://github.com/lschnell8)
-
-[Kai Kuller](https://github.com/kavakai)
+- [Lindsay Schnell](https://github.com/lschnell8)
+- [Kai Kuller](https://github.com/kavakai)
 
 ## Abstract 
 
