@@ -1,5 +1,12 @@
 # Rancid-Tomatillos
 
+## Table of Contents
+
+[Designers](#Designers)
+[Abstract](#Abstract)
+[Future Additions](#Future Additions)
+[Technologies Used](#Technologies Used)
+
 ## Designers 
 
 [Lindsay Schnell](https://github.com/lschnell8)
