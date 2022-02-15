@@ -43,6 +43,7 @@ class Sidebar extends Component {
     // submitBtn.classList.toggle('hide')
   }
 
+
   render() {
     return (
       <aside className="sidebar">
@@ -122,7 +123,7 @@ class Sidebar extends Component {
               </MenuItem>
                 </form>
                 <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon" />Search</button>
-                <button className='submit clear' onClick={this.props.clearFiltered}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>See All Movies</button>
+              <button className='submit clear' onClick={this.props.clearFiltered}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>See All Movies</button>
             </Menu>
           </SidebarContent>
       </ProSidebar>
