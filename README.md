@@ -1,8 +1,13 @@
 # Rancid-Tomatillos
 
+## Designers 
+
+[Lindsay Schnell](https://github.com/lschnell8)
+[Kai Kuller](https://github.com/kavakai)
+
 ## Abstract 
 
-This was a Turing School of Software and Design paired-project. The focus for this project was to gain a better understanding of React. Using both functional and class based components, we created a movie rating/information app that allows users to search films based on 3 criteria, view more specific information on a particular movie, and watch trailers if available. We gained a deeper understanding of async functionality, prop passing, state, and other functionality within React.
+This was a Turing School of Software and Design paired-project. The focus for this project was to gain a better understanding of React. Using both functional and class based components, we created a movie rating/information app that allows users to search films based on 3 criteria, view more specific information on a particular movie, and watch trailers if available. We gained a deeper understanding of async functionality, prop passing, state, and other functionality within React. You can find the original project specs [HERE](https://frontend.turing.edu/projects/module-3/rancid-tomatillos-v3.html).
 
 ## Future Additions
 
