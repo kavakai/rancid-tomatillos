@@ -58,7 +58,11 @@ class App extends Component{
 
   render() {
     if (this.state.loading && !this.state.error) {
-      return <div className="loader"></div>
+      return (
+        <section>
+          <div className="loader"></div>
+        </section>
+      )
     } else {
       return (
         <main>

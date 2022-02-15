@@ -4,8 +4,8 @@
 }
 
 .cover {
-  width: 10rem;
-  position: absolute; 
-  bottom: 28vh;
+  width: 12rem;
+  position: absolute;
+  top: 46vh;
   left: 5vw;
 }

@@ -13,19 +13,13 @@ class Sidebar extends Component {
       ratingInput: '',
       menuCollapse: true,
     }
-    // console.log('WhatIsThis')
   }
 
   handleChange = (event) => {
-    // console.log('HC', event.target.name)
     this.setState({ [event.target.name]: event.target.value });
-    // this.searchTitle(event);
-    // console.log(this.state, 'state in sidebar')
   }
   
   searchTitle = (event) => {
-    // console.log('ST', event.target.value)
-    // console.log(this.state[event.target.name], 'text in sidebar comp')
     event.preventDefault()
     this.props.filterMovies(this.state)
     this.clearInput(event)
@@ -34,38 +28,42 @@ class Sidebar extends Component {
   clearInput = (event) => {
     event.preventDefault()
     this.setState({ textInput: '', dateInput: '', ratingInput: '' })
-    // this.props.clearFiltered()
   }
 
   collapseMenu = () => {
     this.state.menuCollapse ? this.setState({ menuCollapse: false }) : this.setState({ menuCollapse: true })
-    // const submitBtn = document.querySelector('.submit');
-    // submitBtn.classList.toggle('hide')
   }
 
   render() {
     return (
       <aside className="sidebar">
-        <button onClick={this.collapseMenu}>
-          <img className="searchIcon" src={searchIcon} alt="Search Icon"/></button>
+        <button
+          onClick={this.collapseMenu}>
+          <img className="searchIcon" src={searchIcon} alt="Search Icon" />
+        </button>
         <ProSidebar collapsed={this.state.menuCollapse}>
           <SidebarHeader>Search All Movies</SidebarHeader>
           <SidebarContent>
             <Menu>
-                <form>
+              <form>
               <MenuItem>
                 <input
                   className="input"
                   type="text"
                   placeholder="Movie Title"
                   name="textInput"
-                  value={this.state.textInput}
+                  value={this.state.textInput}    
                   onChange={(event) => this.handleChange(event)}
                 />
               </MenuItem>
-              <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
+                <button
+                  className='submit'
+                  value={this.state.textInput}
+                  onClick={(event) => this.searchTitle(event)}>
+                  <img className="searchReel" src={searchReel} alt="Search Reel Icon" />Search
+                </button>
               <MenuItem>
-                  <input
+                <input
                   className="input"  
                   type="month"
                   name="dateInput"
@@ -74,7 +72,11 @@ class Sidebar extends Component {
                   onChange={(event) => this.handleChange(event)} 
                 />
               </MenuItem>
-              <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>Search</button>
+                <button className='submit'
+                  value={this.state.dateInput}
+                  onClick={(event) => this.searchTitle(event)}>
+                  <img className="searchReel" src={searchReel} alt="Search Reel Icon" />Search
+                </button>
               <MenuItem>
                 <input 
                   type="radio" 
@@ -82,7 +84,7 @@ class Sidebar extends Component {
                   value={1} 
                   onChange={(event) => this.handleChange(event)} 
                 />
-                <lable>⭐️</lable>
+                <label>⭐️</label>
               </MenuItem>
               <MenuItem>
                 <input 
@@ -91,7 +93,7 @@ class Sidebar extends Component {
                   value={2} 
                   onChange={(event) => this.handleChange(event)} 
                 />
-                <lable>⭐️⭐️</lable>
+                <label>⭐️⭐️</label>
               </MenuItem>
               <MenuItem>
                 <input 
@@ -100,7 +102,7 @@ class Sidebar extends Component {
                   value={3} 
                   onChange={(event) => this.handleChange(event)} 
                 />
-                <lable>⭐️⭐️⭐️</lable>
+                <label>⭐️⭐️⭐️</label>
               </MenuItem>
               <MenuItem>
                 <input 
@@ -109,7 +111,7 @@ class Sidebar extends Component {
                   value={4} 
                   onChange={(event) => this.handleChange(event)} 
                 />
-                <lable>⭐️⭐️⭐️⭐️</lable>
+                <label>⭐️⭐️⭐️⭐️</label>
               </MenuItem>
               <MenuItem>
                 <input 
@@ -118,11 +120,20 @@ class Sidebar extends Component {
                   value={5}
                   onChange={(event) => this.handleChange(event)} 
                 />
-                <lable>⭐️⭐️⭐️⭐️⭐️</lable>
+                <label>⭐️⭐️⭐️⭐️⭐️</label>
               </MenuItem>
-                </form>
-                <button className='submit' onClick={(event) => this.searchTitle(event)}><img className="searchReel" src={searchReel} alt="Search Reel Icon" />Search</button>
-                <button className='submit clear' onClick={this.props.clearFiltered}><img className="searchReel" src={searchReel} alt="Search Reel Icon"/>See All Movies</button>
+              </form>
+              <button
+                className='submit'
+                value={this.state.ratingInput}
+                onClick={(event) => this.searchTitle(event)}>
+                <img className="searchReel" src={searchReel} alt="Search Reel Icon" />Search
+              </button>
+              <button
+                className='submit clear'
+                onClick={this.props.clearFiltered}>
+                <img className="searchReel" src={searchReel} alt="Search Reel Icon" />See All Movies
+              </button>
             </Menu>
           </SidebarContent>
       </ProSidebar>
