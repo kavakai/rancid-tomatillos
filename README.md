@@ -24,7 +24,17 @@ This was a Turing School of Software and Design paired-project. The focus for th
 
 ## Screenshots
 
+- Home Page:
 
+![Home Screen](https://media.giphy.com/media/qRuz3yNhsGxKh8ZdfO/giphy.gif)
+
+- Filter Movies:
+
+![Filter Movies](https://media.giphy.com/media/PJSG3aqn4hC5apC5y8/giphy.gif)
+
+- Single Movie Page:
+
+![Single Movie Page](https://media.giphy.com/media/Pc8dqWTcNXdVYaobLZ/giphy.gif)
 
 ## Future Additions
 
