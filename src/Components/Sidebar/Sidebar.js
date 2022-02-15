@@ -34,6 +34,7 @@ class Sidebar extends Component {
     this.state.menuCollapse ? this.setState({ menuCollapse: false }) : this.setState({ menuCollapse: true })
   }
 
+
   render() {
     return (
       <aside className="sidebar">
