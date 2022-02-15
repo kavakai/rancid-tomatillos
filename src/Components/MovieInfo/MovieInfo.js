@@ -76,7 +76,6 @@ class MovieInfo extends Component {
       return (
         <section className="movie-info">
           <MovieImg movie={this.state.movie} />
-          <Modal show={this.state.showModal} hideModal={this.hideModal} trailer={this.state.trailer} />
           <MovieDescriptors
             movie={this.state.movie}
             navigateHome={this.props.navigateHome}
@@ -84,6 +83,7 @@ class MovieInfo extends Component {
             showModal={this.showModal}
             trailer={this.state.trailer}
           />
+          <Modal show={this.state.showModal} hideModal={this.hideModal} trailer={this.state.trailer} />
         </section>
       );
     }

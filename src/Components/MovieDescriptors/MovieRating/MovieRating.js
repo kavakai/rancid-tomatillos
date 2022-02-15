@@ -6,10 +6,10 @@ const MovieRating = ({ movie, showModal, trailer, navigateHome }) => {
   return (
     <div className="place-container">
       <p>{(movie.average_rating / 2).toFixed(1)} ⭐️</p>
-      <Link className="place-container" to="/">
-        <button onClick={() => navigateHome()}>Home</button>
-      </Link>
       {trailer.length > 30 && <button onClick={() => { showModal() }}>Watch Trailer</button>}
+      <Link to="/">
+        <button className="home-btn" onClick={() => navigateHome()}>Home</button>
+      </Link>
     </div>
   );
 }
