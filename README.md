@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
--[Designers](#designers)
--[Abstract](#abstract)
--[Future Additions](#future additions)
--[Technologies Used](#technologies used)
+- [Designers](#designers)
+- [Abstract](#abstract)
+- [Future Additions](#future-additions)
+- [Technologies Used](#technologies-used)
 
 ## Designers 
 
